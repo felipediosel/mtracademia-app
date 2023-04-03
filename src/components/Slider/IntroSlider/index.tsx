@@ -47,7 +47,7 @@ export function IntroSlider({...rest}) {
   };
 
   const _done = () => {
-    navigation.navigate('RoutesIntro');
+    navigation.navigate('ChooseUser');
   };
 
   return (

@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import useUser from '../hooks/useUser';
 
 const useChooseUser = () => {
-  const {user, signIn, isLoading: isUserIsLoading} = useUser();
+  const {isLoading: isUserIsLoading, user, signIn} = useUser();
   const [pessoas, setPessoas] = useState([]);
   const [chooseUser, setChooseUser] = useState(false);
   const [isChooseUserIsLoading, setIsChooseUserIsLoading] = useState(true);
@@ -17,8 +17,9 @@ const useChooseUser = () => {
         if (pessoasAsyncStorage.length > 1) {
           setChooseUser(true);
         } else {
-          setChooseUser(false);
-          signIn(pessoasAsyncStorage.shift());
+          signIn(pessoasAsyncStorage.shift()).then(() => {
+            setChooseUser(false);
+          });
         }
 
         setPessoas(pessoasAsyncStorage);

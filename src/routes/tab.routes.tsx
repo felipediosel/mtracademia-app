@@ -20,14 +20,24 @@ import {
   Person,
   Barbell,
   UserList,
+  Scroll,
 } from 'phosphor-react-native';
 import {Image} from 'react-native';
 import {Text} from '../components/Texts/Text';
+import {useEffect, useState} from 'react';
+import {ActivityIndicator} from '../components/ActivityIndicator';
 
 export function TabRoutes() {
+  const [userName, setUserName] = useState<string>('');
   const theme = useTheme();
 
-  const {user} = useUser();
+  const {isLoading: isUserIsLoading, user} = useUser();
+
+  useEffect(() => {
+    if (user) {
+      setUserName(user.nome);
+    }
+  }, [isUserIsLoading, user]);
 
   return (
     <Tab.Navigator
@@ -44,9 +54,7 @@ export function TabRoutes() {
         name="Plano"
         component={Plan}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <Receipt weight="fill" size={size} color={color} />
-          ),
+          tabBarIcon: ({color, size}) => <Scroll size={size} color={color} />,
         }}
       />
       <Tab.Screen
@@ -54,7 +62,7 @@ export function TabRoutes() {
         component={Finance}
         options={{
           tabBarIcon: ({color, size}) => (
-            <CurrencyDollar weight="bold" size={size} color={color} />
+            <CurrencyDollar size={size} color={color} />
           ),
           headerLeft: () => {
             return (
@@ -71,7 +79,7 @@ export function TabRoutes() {
             paddingLeft: theme.responsive.hp('3%'),
           },
           headerRight: () => {
-            return <UserList weight="bold" size={25} color={theme.colors.ts} />;
+            return <UserList size={25} color={theme.colors.ts} />;
           },
           headerRightContainerStyle: {
             paddingRight: theme.responsive.hp('3%'),
@@ -98,7 +106,7 @@ export function TabRoutes() {
         component={Home}
         options={{
           tabBarIcon: ({color, size}) => (
-            <SquaresFour weight="fill" size={size} color={color} />
+            <SquaresFour size={size} color={color} />
           ),
           headerLeft: () => {
             return (
@@ -115,7 +123,7 @@ export function TabRoutes() {
             paddingLeft: theme.responsive.hp('3%'),
           },
           headerRight: () => {
-            return <UserList weight="bold" size={25} color={theme.colors.ts} />;
+            return <UserList size={25} color={theme.colors.ts} />;
           },
           headerRightContainerStyle: {
             paddingRight: theme.responsive.hp('3%'),
@@ -130,7 +138,7 @@ export function TabRoutes() {
                   Bem vindo,
                 </Text>
                 {'\n'}
-                {user ? user.nome : ''}
+                {isUserIsLoading ? <ActivityIndicator /> : userName}
               </Text>
             );
           },
@@ -142,18 +150,14 @@ export function TabRoutes() {
         name="Corpo"
         component={Body}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <Person weight="fill" size={size} color={color} />
-          ),
+          tabBarIcon: ({color, size}) => <Person size={size} color={color} />,
         }}
       />
       <Tab.Screen
         name="Treino"
         component={Workout}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <Barbell weight="fill" size={size} color={color} />
-          ),
+          tabBarIcon: ({color, size}) => <Barbell size={size} color={color} />,
         }}
       />
     </Tab.Navigator>

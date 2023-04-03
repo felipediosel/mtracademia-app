@@ -1,25 +1,20 @@
 import {useState, useEffect} from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import useUser from '../hooks/useUser';
 
 const useGetOnboardingStatus = () => {
-  const [isFirstLaunch, setIsFirstLaunch] = useState(false);
-  const [isFirstLaunchIsLoading, setIsFirstLaunchIsLoading] = useState(true);
+  const {user, isLoading: isUserIsLoading} = useUser();
+  const [isFirstLaunch, setIsFirstLaunch] = useState(true);
 
   useEffect(() => {
-    AsyncStorage.getItem('user')
-      .then(hasFirstLaunched => {
-        if (hasFirstLaunched === null) {
-          setIsFirstLaunch(true);
-        }
-      })
-      .finally(() => {
-        setIsFirstLaunchIsLoading(false);
-      });
-  }, [isFirstLaunch]);
+    if (user) {
+      setIsFirstLaunch(false);
+    }
+  }, [user]);
 
   return {
-    isFirstLaunch: isFirstLaunch,
-    isLoading: isFirstLaunchIsLoading,
+    isFirstLaunch,
+    isLoading: isUserIsLoading,
   };
 };
 

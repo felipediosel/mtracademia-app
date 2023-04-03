@@ -1,27 +1,33 @@
-import auth from '@react-native-firebase/auth';
+import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 import {useEffect, useState} from 'react';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const useAuth = () => {
-  const [idToken, onIdTokenChange] = useState<string | undefined>();
-  const [isSignedIn, onSignedInChange] = useState<boolean | undefined>();
+  const [isLoadingAuth, setIsLoadingAuth] = useState<boolean>(true);
+  const [isFirstTime, setFirstTime] = useState<boolean>(true);
+  const [isSignedIn, setSignedIn] = useState<boolean | undefined>(false);
 
   useEffect(() => {
-    const unsubscribe = auth().onIdTokenChanged(async user => {
-      if (!user) {
-        onSignedInChange(false);
-        return;
-      }
+    const unsubscribe = auth().onIdTokenChanged(
+      async (User: FirebaseAuthTypes.User | null) => {
+        setIsLoadingAuth(false);
+        setSignedIn(User !== null);
 
-      const token = await user.getIdToken();
+        const user = await AsyncStorage.getItem('user');
 
-      onIdTokenChange(token);
-      onSignedInChange(true);
-    });
+        setFirstTime(user === null);
+      },
+    );
 
     return () => unsubscribe();
   }, []);
 
-  return {idToken, isSignedIn};
+  return {
+    isLoading: isLoadingAuth,
+    isFirstTime,
+    isSignedIn,
+  };
 };
 
 export default useAuth;

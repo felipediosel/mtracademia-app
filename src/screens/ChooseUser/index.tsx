@@ -15,15 +15,24 @@ import {Container} from '../../components/Container';
 import {TextExtraLarge} from '../../components/Texts/TextExtraLarge';
 import {Text} from '../../components/Texts/Text';
 import {Item} from '../../components/Item';
+import {useEffect, useState} from 'react';
 
 export function ChooseUser() {
   const navigation = useNavigation();
 
   const theme = useTheme();
 
-  const {pessoas, isLoading} = useChooseUser();
+  const {pessoas, isChooseUser, isLoading} = useChooseUser();
 
   const {signIn} = useUser();
+
+  useEffect(() => {
+    if (!isLoading) {
+      if (!isChooseUser) {
+        navigation.navigate('Routes');
+      }
+    }
+  }, [isLoading]);
 
   if (isLoading) {
     return <Loading />;

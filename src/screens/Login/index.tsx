@@ -19,7 +19,7 @@ import {Container} from '../../components/Container';
 import {AlertEmailInvalid} from '../../components/Alerts/AlertEmailInvalid';
 import {AlertEmailNotFound} from '../../components/Alerts/AlertEmailNotFound';
 import {AlertEmailSent} from '../../components/Alerts/AlertEmailSent';
-import {PaperPlaneTilt} from 'phosphor-react-native';
+import {SignIn} from 'phosphor-react-native';
 
 const Login = () => {
   const theme = useTheme();
@@ -117,17 +117,13 @@ const Login = () => {
                 disabled={isLoading}
                 children={
                   <Container style={{flexDirection: 'row'}}>
-                    <PaperPlaneTilt
-                      size={33}
-                      weight={'fill'}
-                      color={theme.colors.tp}
-                    />
-                    <Text>Enviar</Text>
+                    <SignIn size={30} color={theme.colors.tp} />
+                    <Text>Entrar</Text>
                   </Container>
                 }
               />
               <TextMini>
-                Ao enviar, você concorda com{'\n'} os nossos{' '}
+                Ao entrar, você concorda com{'\n'} os nossos{' '}
                 <TextMini
                   style={{
                     textDecorationLine: 'underline',

@@ -5,9 +5,9 @@ export const ViewForeground = styled.View`
     background: ${theme.colors.bg};
     border-top-right-radius: ${theme.borders.md};
     border-top-left-radius: ${theme.borders.md};
-    height: ${theme.responsive.hp('33%')}px;
+    height: ${theme.responsive.hp('30%')}px;
     width: ${theme.responsive.wp('100%')}px;
-    gap: ${theme.responsive.hp('2%')}px;
+    gap: ${theme.responsive.hp('1%')}px;
     bottom: 0;
     flex-direction: column;
     justify-content: center;
