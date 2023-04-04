@@ -8,7 +8,7 @@ export function AlertEmailSent({...rest}) {
 
   return (
     <Alert
-      icon={<Envelope size={40} color={theme.colors.pr} />}
+      icon={<Envelope size={theme.icons.sizes.lg} color={theme.colors.pr} />}
       text1={<>Yees!</>}
       text2={
         <>

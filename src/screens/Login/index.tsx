@@ -59,18 +59,18 @@ const Login = () => {
     });
   };
 
-  const storagePessoas = async (
+  const setUsers = async (
     querySnapshot: FirebaseFirestoreTypes.QuerySnapshot,
   ) => {
-    const pessoas: FirebaseFirestoreTypes.DocumentData[] = [];
+    const documents: FirebaseFirestoreTypes.DocumentData[] = [];
 
     querySnapshot.forEach(Document => {
       delete Document.data().versao;
 
-      pessoas.push(Document.data());
+      documents.push(Document.data());
     });
 
-    await AsyncStorage.setItem('pessoas', JSON.stringify(pessoas));
+    await AsyncStorage.setItem('users', JSON.stringify(documents));
   };
 
   const onSubmit = async () => {
@@ -86,7 +86,7 @@ const Login = () => {
       (querySnapshot: FirebaseFirestoreTypes.QuerySnapshot) => {
         if (querySnapshot.size > 0) {
           sendEmail().then(() => {
-            storagePessoas(querySnapshot);
+            setUsers(querySnapshot);
 
             setShowAlertEmailSent(true);
             setIsLoading(false);
@@ -117,7 +117,10 @@ const Login = () => {
                 disabled={isLoading}
                 children={
                   <Container style={{flexDirection: 'row'}}>
-                    <SignIn size={30} color={theme.colors.tp} />
+                    <SignIn
+                      size={theme.icons.sizes.md}
+                      color={theme.colors.tp}
+                    />
                     <Text>Entrar</Text>
                   </Container>
                 }

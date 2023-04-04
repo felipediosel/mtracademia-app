@@ -8,7 +8,12 @@ export function AlertEmailNotFound({...rest}) {
 
   return (
     <Alert
-      icon={<HeartStraightBreak size={40} color={theme.colors.pr} />}
+      icon={
+        <HeartStraightBreak
+          size={theme.icons.sizes.lg}
+          color={theme.colors.pr}
+        />
+      }
       text1={<>Aaah!</>}
       text2={
         <>

@@ -8,7 +8,7 @@ export function AlertEmailLinkInvalid({...rest}) {
 
   return (
     <Alert
-      icon={<SmileySad size={40} color={theme.colors.pr} />}
+      icon={<SmileySad size={theme.icons.sizes.lg} color={theme.colors.pr} />}
       text1={<>Oops!</>}
       text2={
         <>

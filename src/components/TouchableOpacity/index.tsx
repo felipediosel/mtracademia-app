@@ -1,10 +1,10 @@
-import * as S from './styles';
-import {ActivityIndicator} from 'react-native';
-import {ReactNode} from 'react';
+import {ActivityIndicator, TouchableOpacityProps} from 'react-native';
 import {useTheme} from 'styled-components';
 
-type Props = {
-  children: ReactNode;
+import * as S from './styles';
+
+type Props = TouchableOpacityProps & {
+  children: JSX.Element;
   loading: boolean;
 };
 

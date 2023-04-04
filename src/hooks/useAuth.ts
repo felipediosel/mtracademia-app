@@ -1,6 +1,5 @@
-import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 import {useEffect, useState} from 'react';
-
+import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const useAuth = () => {

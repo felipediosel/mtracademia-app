@@ -1,5 +1,7 @@
-import {TabRoutes} from './tab.routes';
+import TabRoutes from './tab.routes';
 
-export function Routes() {
+const Routes = () => {
   return <TabRoutes />;
-}
+};
+
+export default Routes;

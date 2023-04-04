@@ -1,13 +1,16 @@
 import {useCallback, useEffect, useState} from 'react';
-import useSignIn from './useSignin';
+
 import dynamicLinks, {
   FirebaseDynamicLinksTypes,
 } from '@react-native-firebase/dynamic-links';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import useSignIn from './useSignin';
 
 const useFirebaseLink = (): [boolean, boolean] => {
   const [onSignIn, isLoading, isError] = useSignIn();
-  const [isSignInError, setSignInError] = useState(false);
+  const [isSignInError, setSignInError] = useState<boolean>(false);
 
   const handleDynamicLink = useCallback<
     (link: FirebaseDynamicLinksTypes.DynamicLink) => void

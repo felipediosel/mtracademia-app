@@ -1,13 +1,12 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/native';
-
 import {useEffect, useState} from 'react';
 
+import useStatusBar from '../hooks/useStatusBar';
 import useAuth from '../hooks/useAuth';
 import useFirebaseLink from '../hooks/useFirebaseLink';
-import useStatusBar from '../hooks/useStatusBar';
 
-import {Routes} from '../routes';
+import Routes from '../routes';
 import {ChooseUser} from '../screens/ChooseUser';
 import {Loading} from '../screens/Loading';
 import Login from '../screens/Login';
@@ -18,16 +17,22 @@ import {SafeAreaView} from '../components/SafeAreaView';
 import {IntroSlider} from '../components/Slider/IntroSlider';
 import {AlertEmailLinkInvalid} from '../components/Alerts/AlertEmailLinkInvalid';
 
-const Stack = createStackNavigator();
+export type RootStackParamList = {
+  Loading: undefined;
+  Login: undefined;
+  Intro: undefined;
+  ChooseUser: undefined;
+  Routes: undefined;
+};
 
-const MainNavigator = () => {
+const Stack = createStackNavigator<RootStackParamList>();
+
+const Navigator = () => {
   const navigation = useNavigation();
 
-  const {isLoading: isLoadingAuth, isFirstTime, isSignedIn} = useAuth();
-
-  const [isLoading, isError] = useFirebaseLink();
-
   const {} = useStatusBar();
+  const {isLoading: isLoadingAuth, isFirstTime, isSignedIn} = useAuth();
+  const [isLoading, isError] = useFirebaseLink();
 
   const [showAlertEmailLinkInvalid, setShowAlertEmailLinkInvalid] =
     useState(false);
@@ -85,4 +90,4 @@ const MainNavigator = () => {
   );
 };
 
-export default MainNavigator;
+export default Navigator;

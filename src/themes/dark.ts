@@ -55,4 +55,12 @@ export default {
       md: '5px', //medium
     },
   },
+  icons: {
+    sizes: {
+      sm: 25,
+      md: 35,
+      lg: 45,
+      xl: 95,
+    },
+  },
 };

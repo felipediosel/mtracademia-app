@@ -4,8 +4,8 @@ import {useCallback, useState} from 'react';
 type OnSignIn = (emailLink: string, email?: string | null) => void;
 
 const useSignIn = (): [OnSignIn, boolean, boolean] => {
-  const [loading, onLoadingChange] = useState(false);
-  const [emailError, setEmailError] = useState(false);
+  const [loading, onLoadingChange] = useState<boolean>(false);
+  const [emailError, setEmailError] = useState<boolean | any>(false);
 
   const onSignIn = useCallback<OnSignIn>(async (emailLink, email) => {
     setEmailError(false);

@@ -1,14 +1,14 @@
 import {Theme} from './src/templates/theme';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
-import MainNavigator from './src/navigation/MainNavigator';
+import Navigator from './src/navigation';
 
 const App = () => {
   return (
     <Theme>
       <SafeAreaProvider>
         <NavigationContainer>
-          <MainNavigator />
+          <Navigator />
         </NavigationContainer>
       </SafeAreaProvider>
     </Theme>

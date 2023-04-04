@@ -16,7 +16,6 @@ import useUser from '../hooks/useUser';
 import {
   SquaresFour,
   CurrencyDollar,
-  Receipt,
   Person,
   Barbell,
   UserList,
@@ -27,7 +26,7 @@ import {Text} from '../components/Texts/Text';
 import {useEffect, useState} from 'react';
 import {ActivityIndicator} from '../components/ActivityIndicator';
 
-export function TabRoutes() {
+const TabRoutes = () => {
   const [userName, setUserName] = useState<string>('');
   const theme = useTheme();
 
@@ -79,7 +78,9 @@ export function TabRoutes() {
             paddingLeft: theme.responsive.hp('3%'),
           },
           headerRight: () => {
-            return <UserList size={25} color={theme.colors.ts} />;
+            return (
+              <UserList size={theme.icons.sizes.sm} color={theme.colors.ts} />
+            );
           },
           headerRightContainerStyle: {
             paddingRight: theme.responsive.hp('3%'),
@@ -123,7 +124,9 @@ export function TabRoutes() {
             paddingLeft: theme.responsive.hp('3%'),
           },
           headerRight: () => {
-            return <UserList size={25} color={theme.colors.ts} />;
+            return (
+              <UserList size={theme.icons.sizes.sm} color={theme.colors.ts} />
+            );
           },
           headerRightContainerStyle: {
             paddingRight: theme.responsive.hp('3%'),
@@ -162,4 +165,6 @@ export function TabRoutes() {
       />
     </Tab.Navigator>
   );
-}
+};
+
+export default TabRoutes;

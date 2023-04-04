@@ -1,28 +1,30 @@
 import {useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import useUser from '../hooks/useUser';
+import useUser, {signIn, UserProps} from '../hooks/useUser';
 
 const useChooseUser = () => {
-  const {isLoading: isUserIsLoading, user, signIn} = useUser();
-  const [pessoas, setPessoas] = useState([]);
-  const [chooseUser, setChooseUser] = useState(false);
-  const [isChooseUserIsLoading, setIsChooseUserIsLoading] = useState(true);
+  const {isLoading: isUserIsLoading, user} = useUser();
+
+  const [users, setUsers] = useState<UserProps[]>([]);
+  const [chooseUser, setChooseUser] = useState<boolean>(false);
+  const [isChooseUserIsLoading, setIsChooseUserIsLoading] =
+    useState<boolean>(true);
 
   useEffect(() => {
-    AsyncStorage.getItem('pessoas')
+    AsyncStorage.getItem('users')
       .then(item => {
-        const pessoasAsyncStorage = item ? JSON.parse(item) : [];
+        const usersItem = item ? JSON.parse(item) : [];
 
-        if (pessoasAsyncStorage.length > 1) {
+        if (usersItem.length > 1) {
           setChooseUser(true);
         } else {
-          signIn(pessoasAsyncStorage.shift()).then(() => {
+          signIn(usersItem.shift()).then(() => {
             setChooseUser(false);
           });
         }
 
-        setPessoas(pessoasAsyncStorage);
+        setUsers(usersItem);
       })
       .finally(() => {
         setIsChooseUserIsLoading(false);
@@ -30,7 +32,7 @@ const useChooseUser = () => {
   }, []);
 
   return {
-    pessoas,
+    users,
     isChooseUser: chooseUser && !user,
     isLoading: isChooseUserIsLoading || isUserIsLoading,
   };

@@ -8,7 +8,7 @@ export function AlertEmailInvalid({...rest}) {
 
   return (
     <Alert
-      icon={<XCircle size={40} color={theme.colors.pr} />}
+      icon={<XCircle size={theme.icons.sizes.lg} color={theme.colors.pr} />}
       text1={<>Noop!</>}
       text2={
         <>
