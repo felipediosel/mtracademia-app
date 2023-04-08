@@ -14,7 +14,7 @@ import AppIntroSlider from 'react-native-app-intro-slider';
 
 import * as S from './styles';
 
-export function IntroSlider({...rest}) {
+export function IntroSlider({...rest}): JSX.Element {
   const navigation = useNavigation();
   const theme = useTheme();
 

@@ -4,7 +4,7 @@ import firestore from '@react-native-firebase/firestore';
 import {FlatList} from 'react-native';
 
 import * as S from './styles';
-import {Loading} from '../../screens/Loading';
+import Loading from '../../screens/Loading';
 
 export function Home() {
   const [loading, setLoading] = useState(true);

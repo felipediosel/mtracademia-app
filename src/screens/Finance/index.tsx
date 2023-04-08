@@ -1,4 +1,4 @@
-import {Loading} from '../../screens/Loading';
+import Loading from '../../screens/Loading';
 
 export function Finance() {
   return <Loading />;

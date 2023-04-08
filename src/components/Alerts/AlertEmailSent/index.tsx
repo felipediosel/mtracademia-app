@@ -1,5 +1,5 @@
 import {Alert} from '../Alert';
-import {Envelope} from 'phosphor-react-native';
+import {EnvelopeSimple} from 'phosphor-react-native';
 import {useTheme} from 'styled-components';
 import {Text} from '../../Texts/Text';
 
@@ -8,11 +8,13 @@ export function AlertEmailSent({...rest}) {
 
   return (
     <Alert
-      icon={<Envelope size={theme.icons.sizes.lg} color={theme.colors.pr} />}
+      icon={
+        <EnvelopeSimple size={theme.icons.sizes.lg} color={theme.colors.pr} />
+      }
       text1={<>Yees!</>}
       text2={
         <>
-          Enviamos um <Text style={{color: theme.colors.pr}}>e-mail</Text>.
+          <Text style={{color: theme.colors.pr}}>e-mail</Text> enviado
         </>
       }
       text3={

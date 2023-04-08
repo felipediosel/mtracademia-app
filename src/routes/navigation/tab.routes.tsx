@@ -3,15 +3,15 @@ import {useTheme} from 'styled-components';
 
 const Tab = createBottomTabNavigator();
 
-import {Home} from '../screens/Home';
-import {Finance} from '../screens/Finance';
-import {Plan} from '../screens/Plan';
-import {Body} from '../screens/Body';
-import {Workout} from '../screens/Workout';
+import {Home} from '../../screens/Home';
+import {Finance} from '../../screens/Finance';
+import {Plan} from '../../screens/Plan';
+import {Body} from '../../screens/Body';
+import {Workout} from '../../screens/Workout';
 
-import * as S from './styles';
+import * as S from '../styles';
 
-import useUser from '../hooks/useUser';
+import useUser from '../../hooks/useUser';
 
 import {
   SquaresFour,
@@ -22,11 +22,11 @@ import {
   Scroll,
 } from 'phosphor-react-native';
 import {Image} from 'react-native';
-import {Text} from '../components/Texts/Text';
+import {Text} from '../../components/Texts/Text';
 import {useEffect, useState} from 'react';
-import {ActivityIndicator} from '../components/ActivityIndicator';
+import {ActivityIndicator} from '../../components/ActivityIndicator';
 
-const TabRoutes = () => {
+const TabNavigator = () => {
   const [userName, setUserName] = useState<string>('');
   const theme = useTheme();
 
@@ -66,7 +66,7 @@ const TabRoutes = () => {
           headerLeft: () => {
             return (
               <Image
-                source={require('../assets/img/mtr-logo-dark.png')}
+                source={require('../../assets/img/mtr-logo-dark.png')}
                 style={{
                   width: 45,
                   height: 41,
@@ -112,7 +112,7 @@ const TabRoutes = () => {
           headerLeft: () => {
             return (
               <Image
-                source={require('../assets/img/mtr-logo-dark.png')}
+                source={require('../../assets/img/mtr-logo-dark.png')}
                 style={{
                   width: 45,
                   height: 41,
@@ -167,4 +167,4 @@ const TabRoutes = () => {
   );
 };
 
-export default TabRoutes;
+export default TabNavigator;

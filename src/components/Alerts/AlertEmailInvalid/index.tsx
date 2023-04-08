@@ -1,5 +1,5 @@
 import {Alert} from '../Alert';
-import {XCircle} from 'phosphor-react-native';
+import {At, Textbox, X, XCircle} from 'phosphor-react-native';
 import {useTheme} from 'styled-components';
 import {Text} from '../../Texts/Text';
 
@@ -8,11 +8,11 @@ export function AlertEmailInvalid({...rest}) {
 
   return (
     <Alert
-      icon={<XCircle size={theme.icons.sizes.lg} color={theme.colors.pr} />}
+      icon={<Textbox size={theme.icons.sizes.lg} color={theme.colors.pr} />}
       text1={<>Noop!</>}
       text2={
         <>
-          Este <Text style={{color: theme.colors.pr}}>e-mail</Text> é inválido.
+          <Text style={{color: theme.colors.pr}}>e-mail</Text> inválido
         </>
       }
       text3={

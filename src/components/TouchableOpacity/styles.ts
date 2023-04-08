@@ -5,8 +5,8 @@ export const TouchableOpacity = styled.TouchableOpacity`
     background: ${theme.colors.pr};
     border-radius: ${theme.borders.sm};
     margin: ${theme.margins.mh} ${theme.margins.mv};
-    height: ${theme.heights.md};
-    width: ${theme.widths.md};
+    height: ${theme.heights.sm};
+    width: ${theme.widths.sm};
     flex-direction: row;
     justify-content: center;
     align-items: center;

@@ -1,5 +1,5 @@
 import {Alert} from '../Alert';
-import {HeartStraightBreak} from 'phosphor-react-native';
+import {FolderUser} from 'phosphor-react-native';
 import {useTheme} from 'styled-components';
 import {Text} from '../../Texts/Text';
 
@@ -8,16 +8,11 @@ export function AlertEmailNotFound({...rest}) {
 
   return (
     <Alert
-      icon={
-        <HeartStraightBreak
-          size={theme.icons.sizes.lg}
-          color={theme.colors.pr}
-        />
-      }
+      icon={<FolderUser size={theme.icons.sizes.lg} color={theme.colors.pr} />}
       text1={<>Aaah!</>}
       text2={
         <>
-          Não encontramos <Text style={{color: theme.colors.pr}}>você</Text>.
+          <Text style={{color: theme.colors.pr}}>Aluno</Text> não encontrado
         </>
       }
       text3={

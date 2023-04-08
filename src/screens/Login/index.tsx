@@ -111,22 +111,8 @@ const Login = () => {
               onChangeText={(text: string) => setEmail(text)}
             />
             <Container>
-              <TouchableOpacity
-                onPress={onSubmit}
-                loading={isLoading}
-                disabled={isLoading}
-                children={
-                  <Container style={{flexDirection: 'row'}}>
-                    <SignIn
-                      size={theme.icons.sizes.md}
-                      color={theme.colors.tp}
-                    />
-                    <Text>Entrar</Text>
-                  </Container>
-                }
-              />
               <TextMini>
-                Ao entrar, você concorda com{'\n'} os nossos{' '}
+                Ao entrar, você concorda com os nossos{' '}
                 <TextMini
                   style={{
                     textDecorationLine: 'underline',
@@ -136,6 +122,16 @@ const Login = () => {
                 </TextMini>
                 .
               </TextMini>
+              <TouchableOpacity
+                onPress={onSubmit}
+                loading={isLoading}
+                disabled={isLoading}
+                children={
+                  <Container style={{flexDirection: 'row'}}>
+                    <Text>Entrar</Text>
+                  </Container>
+                }
+              />
             </Container>
           </Foreground>
         </Background>

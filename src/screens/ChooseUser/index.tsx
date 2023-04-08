@@ -8,7 +8,7 @@ import {useTheme} from 'styled-components';
 import useChooseUser from '../../hooks/useChooseUser';
 import {signIn} from '../../hooks/useUser';
 
-import {Loading} from '../../screens/Loading';
+import Loading from '../../screens/Loading';
 
 import {Background} from '../../components/Background';
 import {Container} from '../../components/Container';
@@ -17,7 +17,7 @@ import {Text} from '../../components/Texts/Text';
 import {Item} from '../../components/Item';
 import {TextSmall} from '../../components/Texts/TextSmall';
 
-export function ChooseUser() {
+const ChooseUser = (): JSX.Element => {
   const navigation = useNavigation();
 
   const theme = useTheme();
@@ -27,7 +27,7 @@ export function ChooseUser() {
   useEffect(() => {
     if (!isLoading) {
       if (!isChooseUser) {
-        navigation.navigate('Routes');
+        navigation.navigate('Home');
       }
     }
   }, [isLoading]);
@@ -45,7 +45,6 @@ export function ChooseUser() {
         }}>
         <Container>
           <Question size={theme.icons.sizes.lg} color={theme.colors.pr} />
-          <TextExtraLarge>Eeih.</TextExtraLarge>
         </Container>
         <Container>
           <Text>
@@ -64,7 +63,7 @@ export function ChooseUser() {
             <TouchableOpacity
               onPress={() => {
                 signIn(user).then(() => {
-                  navigation.navigate('Routes');
+                  navigation.navigate('Home');
                 });
               }}>
               <Item
@@ -82,4 +81,6 @@ export function ChooseUser() {
       />
     </Background>
   );
-}
+};
+
+export default ChooseUser;

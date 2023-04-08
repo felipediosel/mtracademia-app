@@ -1,7 +1,4 @@
-import TabRoutes from './tab.routes';
+import Navigator from './navigation/stack.routes';
+import TabNavigator from './navigation/tab.routes';
 
-const Routes = () => {
-  return <TabRoutes />;
-};
-
-export default Routes;
+export default {Navigator, TabNavigator};
