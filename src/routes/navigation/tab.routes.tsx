@@ -1,36 +1,37 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {useEffect, useState} from 'react';
 import {useTheme} from 'styled-components';
-
-const Tab = createBottomTabNavigator();
-
-import {Home} from '../../screens/Home';
-import {Finance} from '../../screens/Finance';
-import {Plan} from '../../screens/Plan';
-import {Body} from '../../screens/Body';
-import {Workout} from '../../screens/Workout';
-
-import * as S from '../styles';
-
-import useUser from '../../hooks/useUser';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {
   SquaresFour,
   CurrencyDollar,
   Person,
   Barbell,
-  UserList,
   Scroll,
 } from 'phosphor-react-native';
-import {Image} from 'react-native';
-import {Text} from '../../components/Texts/Text';
-import {useEffect, useState} from 'react';
+
+import useUser from '../../hooks/useUser';
+
+import Home from '../../screens/Home';
+import Finance from '../../screens/Finance';
+import Plan from '../../screens/Plan';
+import Body from '../../screens/Body';
+import Workout from '../../screens/Workout';
+
 import {ActivityIndicator} from '../../components/ActivityIndicator';
+import {HeaderLeft} from '../../components/TabBar/HeaderLeft';
+import {HeaderRight} from '../../components/TabBar/HeaderRight';
+import {HeaderTitle} from '../../components/TabBar/HeaderTitle';
 
-const TabNavigator = () => {
-  const [userName, setUserName] = useState<string>('');
+import * as S from '../styles';
+
+const Tab = createBottomTabNavigator();
+
+const TabNavigator = (): JSX.Element => {
   const theme = useTheme();
-
   const {isLoading: isUserIsLoading, user} = useUser();
+
+  const [userName, setUserName] = useState<string>('');
 
   useEffect(() => {
     if (user) {
@@ -54,6 +55,23 @@ const TabNavigator = () => {
         component={Plan}
         options={{
           tabBarIcon: ({color, size}) => <Scroll size={size} color={color} />,
+          headerLeft: () => {
+            return <HeaderLeft />;
+          },
+          headerLeftContainerStyle: {
+            paddingLeft: theme.responsive.hp('3%'),
+          },
+          headerRight: () => {
+            return <HeaderRight />;
+          },
+          headerRightContainerStyle: {
+            paddingRight: theme.responsive.hp('3%'),
+          },
+          headerTitle: () => {
+            return <HeaderTitle upTitle="Meu" downTitle="Plano" />;
+          },
+          headerStatusBarHeight: 2,
+          headerTitleAlign: 'left',
         }}
       />
       <Tab.Screen
@@ -64,39 +82,19 @@ const TabNavigator = () => {
             <CurrencyDollar size={size} color={color} />
           ),
           headerLeft: () => {
-            return (
-              <Image
-                source={require('../../assets/img/mtr-logo-dark.png')}
-                style={{
-                  width: 45,
-                  height: 41,
-                }}
-              />
-            );
+            return <HeaderLeft />;
           },
           headerLeftContainerStyle: {
             paddingLeft: theme.responsive.hp('3%'),
           },
           headerRight: () => {
-            return (
-              <UserList size={theme.icons.sizes.sm} color={theme.colors.ts} />
-            );
+            return <HeaderRight />;
           },
           headerRightContainerStyle: {
             paddingRight: theme.responsive.hp('3%'),
           },
           headerTitle: () => {
-            return (
-              <Text
-                style={{
-                  textAlign: 'left',
-                }}>
-                <Text style={{color: theme.colors.ts, textAlign: 'left'}}>
-                  Meu
-                </Text>
-                {'\n'}Financeiro
-              </Text>
-            );
+            return <HeaderTitle upTitle="Meu" downTitle="Financeiro" />;
           },
           headerStatusBarHeight: 2,
           headerTitleAlign: 'left',
@@ -110,39 +108,25 @@ const TabNavigator = () => {
             <SquaresFour size={size} color={color} />
           ),
           headerLeft: () => {
-            return (
-              <Image
-                source={require('../../assets/img/mtr-logo-dark.png')}
-                style={{
-                  width: 45,
-                  height: 41,
-                }}
-              />
-            );
+            return <HeaderLeft />;
           },
           headerLeftContainerStyle: {
             paddingLeft: theme.responsive.hp('3%'),
           },
           headerRight: () => {
-            return (
-              <UserList size={theme.icons.sizes.sm} color={theme.colors.ts} />
-            );
+            return <HeaderRight />;
           },
           headerRightContainerStyle: {
             paddingRight: theme.responsive.hp('3%'),
           },
           headerTitle: () => {
             return (
-              <Text
-                style={{
-                  textAlign: 'left',
-                }}>
-                <Text style={{color: theme.colors.ts, textAlign: 'left'}}>
-                  Bem vindo,
-                </Text>
-                {'\n'}
-                {isUserIsLoading ? <ActivityIndicator /> : userName}
-              </Text>
+              <HeaderTitle
+                upTitle="Bem vindo,"
+                downTitle={
+                  <>{isUserIsLoading ? <ActivityIndicator /> : userName}</>
+                }
+              />
             );
           },
           headerStatusBarHeight: 2,
@@ -154,6 +138,23 @@ const TabNavigator = () => {
         component={Body}
         options={{
           tabBarIcon: ({color, size}) => <Person size={size} color={color} />,
+          headerLeft: () => {
+            return <HeaderLeft />;
+          },
+          headerLeftContainerStyle: {
+            paddingLeft: theme.responsive.hp('3%'),
+          },
+          headerRight: () => {
+            return <HeaderRight />;
+          },
+          headerRightContainerStyle: {
+            paddingRight: theme.responsive.hp('3%'),
+          },
+          headerTitle: () => {
+            return <HeaderTitle upTitle="Meu" downTitle="Corpo" />;
+          },
+          headerStatusBarHeight: 2,
+          headerTitleAlign: 'left',
         }}
       />
       <Tab.Screen
@@ -161,6 +162,23 @@ const TabNavigator = () => {
         component={Workout}
         options={{
           tabBarIcon: ({color, size}) => <Barbell size={size} color={color} />,
+          headerLeft: () => {
+            return <HeaderLeft />;
+          },
+          headerLeftContainerStyle: {
+            paddingLeft: theme.responsive.hp('3%'),
+          },
+          headerRight: () => {
+            return <HeaderRight />;
+          },
+          headerRightContainerStyle: {
+            paddingRight: theme.responsive.hp('3%'),
+          },
+          headerTitle: () => {
+            return <HeaderTitle upTitle="Meu" downTitle="Treino" />;
+          },
+          headerStatusBarHeight: 2,
+          headerTitleAlign: 'left',
         }}
       />
     </Tab.Navigator>

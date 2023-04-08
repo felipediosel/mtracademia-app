@@ -1,26 +1,29 @@
 import AwesomeAlert from 'react-native-awesome-alerts';
-import {forceTouchHandlerName} from 'react-native-gesture-handler/lib/typescript/handlers/ForceTouchGestureHandler';
 import {useTheme} from 'styled-components';
+
 import {Container} from '../../Container';
 import {Text} from '../../Texts/Text';
-import {TextExtraLarge} from '../../Texts/TextExtraLarge';
 import {TextSmall} from '../../Texts/TextSmall';
 
 type AlertProps = {
   icon: JSX.Element;
-  text1: JSX.Element | string;
-  text2: JSX.Element | string;
-  text3: JSX.Element | string;
+  mainTitle: JSX.Element | string;
+  subTitle: JSX.Element | string;
 };
 
-export function Alert({icon, text1, text2, text3, ...rest}: AlertProps) {
+export function Alert({
+  icon,
+  mainTitle,
+  subTitle,
+  ...rest
+}: AlertProps): JSX.Element {
   const theme = useTheme();
 
   return (
     <AwesomeAlert
       title=""
       showProgress={false}
-      closeOnTouchOutside={true}
+      closeOnTouchOutside={false}
       closeOnHardwareBackPress={false}
       showCancelButton={false}
       showConfirmButton={true}
@@ -45,8 +48,8 @@ export function Alert({icon, text1, text2, text3, ...rest}: AlertProps) {
         <Container style={{gap: theme.responsive.hp('2%')}}>
           <Container>{icon}</Container>
           <Container>
-            <Text>{text2}</Text>
-            <TextSmall style={{color: theme.colors.ts}}>{text3}</TextSmall>
+            <Text>{mainTitle}</Text>
+            <TextSmall style={{color: theme.colors.ts}}>{subTitle}</TextSmall>
           </Container>
         </Container>
       }

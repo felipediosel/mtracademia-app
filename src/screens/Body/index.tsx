@@ -1,5 +1,7 @@
 import Loading from '../../screens/Loading';
 
-export function Body() {
+const Body = (): JSX.Element => {
   return <Loading />;
-}
+};
+
+export default Body;

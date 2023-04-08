@@ -1,5 +1,7 @@
 import Loading from '../../screens/Loading';
 
-export function Finance() {
+const Finance = (): JSX.Element => {
   return <Loading />;
-}
+};
+
+export default Finance;

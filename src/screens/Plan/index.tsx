@@ -3,7 +3,7 @@ import auth from '@react-native-firebase/auth';
 
 import useUser from '../../hooks/useUser';
 
-export function Plan() {
+const Plan = (): JSX.Element => {
   const {signOut} = useUser();
 
   return (
@@ -18,4 +18,6 @@ export function Plan() {
       }}
     />
   );
-}
+};
+
+export default Plan;

@@ -7,6 +7,7 @@ import useAuth from '../../hooks/useAuth';
 import useFirebaseLink from '../../hooks/useFirebaseLink';
 
 import TabNavigator from './tab.routes';
+
 import ChooseUser from '../../screens/ChooseUser';
 import Loading from '../../screens/Loading';
 import Login from '../../screens/Login';
@@ -76,13 +77,7 @@ const Navigator = (): JSX.Element => {
       </Background>
       <AlertEmailLinkInvalid
         show={showAlertEmailLinkInvalid}
-        onCancelPressed={() => {
-          setShowAlertEmailLinkInvalid(false);
-        }}
         onConfirmPressed={() => {
-          setShowAlertEmailLinkInvalid(false);
-        }}
-        onDismiss={() => {
           setShowAlertEmailLinkInvalid(false);
         }}
       />

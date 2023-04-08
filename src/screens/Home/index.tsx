@@ -6,7 +6,7 @@ import {FlatList} from 'react-native';
 import * as S from './styles';
 import Loading from '../../screens/Loading';
 
-export function Home() {
+const Home = (): JSX.Element => {
   const [loading, setLoading] = useState(true);
   const [produtos, setProdutos] = useState([]);
 
@@ -52,4 +52,6 @@ export function Home() {
       />
     </S.Container>
   );
-}
+};
+
+export default Home;

@@ -1,5 +1,7 @@
 import Loading from '../../screens/Loading';
 
-export function Workout() {
+const Workout = (): JSX.Element => {
   return <Loading />;
-}
+};
+
+export default Workout;
