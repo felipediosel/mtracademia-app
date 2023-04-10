@@ -34,6 +34,7 @@ const useUser = () => {
     user,
     signIn,
     signOut,
+    formatCpf,
   };
 };
 
@@ -44,6 +45,15 @@ export const signIn = (user: UserProps): Promise<void> => {
 export const signOut = (): void => {
   AsyncStorage.removeItem('user');
   AsyncStorage.removeItem('users');
+};
+
+export const formatCpf = (cpf: string): string => {
+  return cpf.replace(
+    /(\d{3})(\d{3})(\d{3})(\d{2})/,
+    function (regex, arg1, arg2, arg3, arg4) {
+      return arg1 + '.' + arg2 + '.' + arg3 + '-' + arg4;
+    },
+  );
 };
 
 export default useUser;

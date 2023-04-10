@@ -8,6 +8,7 @@ import useFirebaseLink from '../../hooks/useFirebaseLink';
 
 import TabNavigator from './tab.routes';
 
+import UserSettings from '../../screens/UserSettings';
 import ChooseUser from '../../screens/ChooseUser';
 import Loading from '../../screens/Loading';
 import Login from '../../screens/Login';
@@ -24,6 +25,7 @@ export type RootStackParamList = {
   Intro: undefined;
   ChooseUser: undefined;
   Home: undefined;
+  UserSettings: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -72,6 +74,7 @@ const Navigator = (): JSX.Element => {
             <Stack.Screen name="Intro" component={IntroSlider} />
             <Stack.Screen name="ChooseUser" component={ChooseUser} />
             <Stack.Screen name="Home" component={TabNavigator} />
+            <Stack.Screen name="UserSettings" component={UserSettings} />
           </Stack.Navigator>
         </SafeAreaView>
       </Background>

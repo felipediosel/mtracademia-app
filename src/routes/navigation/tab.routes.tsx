@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useTheme} from 'styled-components';
+import {useNavigation} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {
@@ -28,6 +29,7 @@ import * as S from '../styles';
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = (): JSX.Element => {
+  const navigation = useNavigation();
   const theme = useTheme();
   const {isLoading: isUserIsLoading, user} = useUser();
 
@@ -38,6 +40,16 @@ const TabNavigator = (): JSX.Element => {
       setUserName(user.nome);
     }
   }, [isUserIsLoading, user]);
+
+  const headerRight = () => {
+    return (
+      <HeaderRight
+        onPress={() => {
+          navigation.navigate('UserSettings');
+        }}
+      />
+    );
+  };
 
   return (
     <Tab.Navigator
@@ -61,9 +73,7 @@ const TabNavigator = (): JSX.Element => {
           headerLeftContainerStyle: {
             paddingLeft: theme.responsive.hp('3%'),
           },
-          headerRight: () => {
-            return <HeaderRight />;
-          },
+          headerRight: headerRight,
           headerRightContainerStyle: {
             paddingRight: theme.responsive.hp('3%'),
           },
@@ -87,9 +97,7 @@ const TabNavigator = (): JSX.Element => {
           headerLeftContainerStyle: {
             paddingLeft: theme.responsive.hp('3%'),
           },
-          headerRight: () => {
-            return <HeaderRight />;
-          },
+          headerRight: headerRight,
           headerRightContainerStyle: {
             paddingRight: theme.responsive.hp('3%'),
           },
@@ -113,9 +121,7 @@ const TabNavigator = (): JSX.Element => {
           headerLeftContainerStyle: {
             paddingLeft: theme.responsive.hp('3%'),
           },
-          headerRight: () => {
-            return <HeaderRight />;
-          },
+          headerRight: headerRight,
           headerRightContainerStyle: {
             paddingRight: theme.responsive.hp('3%'),
           },
@@ -144,9 +150,7 @@ const TabNavigator = (): JSX.Element => {
           headerLeftContainerStyle: {
             paddingLeft: theme.responsive.hp('3%'),
           },
-          headerRight: () => {
-            return <HeaderRight />;
-          },
+          headerRight: headerRight,
           headerRightContainerStyle: {
             paddingRight: theme.responsive.hp('3%'),
           },
@@ -168,9 +172,7 @@ const TabNavigator = (): JSX.Element => {
           headerLeftContainerStyle: {
             paddingLeft: theme.responsive.hp('3%'),
           },
-          headerRight: () => {
-            return <HeaderRight />;
-          },
+          headerRight: headerRight,
           headerRightContainerStyle: {
             paddingRight: theme.responsive.hp('3%'),
           },

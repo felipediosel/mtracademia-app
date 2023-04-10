@@ -1,11 +1,11 @@
-import AwesomeAlert from 'react-native-awesome-alerts';
+import AwesomeAlert, {AwesomeAlertProps} from 'react-native-awesome-alerts';
 import {useTheme} from 'styled-components';
 
 import {Container} from '../../Container';
 import {Text} from '../../Texts/Text';
 import {TextSmall} from '../../Texts/TextSmall';
 
-type AlertProps = {
+type AlertProps = AwesomeAlertProps & {
   icon: JSX.Element;
   mainTitle: JSX.Element | string;
   subTitle: JSX.Element | string;
@@ -68,6 +68,25 @@ export function Alert({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10,
+      }}
+      cancelButtonColor={undefined}
+      cancelText={'Não'}
+      cancelButtonTextStyle={{
+        fontFamily: theme.fonts.fm,
+        fontWeight: theme.fonts.weights.df,
+        color: theme.colors.tp,
+        fontSize: 12,
+        textTransform: 'uppercase',
+      }}
+      cancelButtonStyle={{
+        height: theme.responsive.hp('5%'),
+        width: theme.responsive.wp('25%'),
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 2,
+        borderColor: theme.colors.ts,
+        borderRadius: 10,
+        backgroundColor: theme.colors.sc,
       }}
       {...rest}
     />
