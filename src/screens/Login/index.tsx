@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
+
+import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
+
 import {useTheme} from 'styled-components';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import auth from '@react-native-firebase/auth';
-import firestore, {
-  FirebaseFirestoreTypes,
-} from '@react-native-firebase/firestore';
+import {getPessoaQuerySnapshotFromEmail} from '../../db/Pessoa';
+
+import {sendSignInLinkToEmail} from '../../hooks/useAuth';
+import {storeUsers, UserProps} from '../../hooks/useUser';
+
+import {isEmailInvalid} from '../../utils/regex';
 
 import {KeyboardAvoidingView} from '../../components/KeyboardAvoidingView';
 import {Background} from '../../components/Background';
@@ -19,7 +23,6 @@ import {Container} from '../../components/Container';
 import {AlertEmailInvalid} from '../../components/Alerts/AlertEmailInvalid';
 import {AlertEmailNotFound} from '../../components/Alerts/AlertEmailNotFound';
 import {AlertEmailSent} from '../../components/Alerts/AlertEmailSent';
-import {SignIn} from 'phosphor-react-native';
 
 const Login = () => {
   const theme = useTheme();
@@ -28,65 +31,33 @@ const Login = () => {
   const [showAlertEmailNotFound, setShowAlertEmailNotFound] = useState(false);
   const [showAlertEmailSent, setShowAlertEmailSent] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [sentEmail, setSentEmail] = useState(false);
   const [email, setEmail] = useState('');
-
-  const isEmailInvalid = () => {
-    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-
-    return reg.test(email) === false;
-  };
-
-  const getQuerySnapshotFromEmail = async (): Promise<
-    FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>
-  > => {
-    return firestore()
-      .collection('pessoa')
-      .where('email', 'in', [email, email.toLocaleLowerCase()])
-      .get();
-  };
-
-  const sendEmail = async (): Promise<void> => {
-    setSentEmail(true);
-
-    await AsyncStorage.setItem('email', email);
-
-    return auth().sendSignInLinkToEmail(email, {
-      android: {packageName: 'com.mtracademiaapp'},
-      handleCodeInApp: true,
-      iOS: {bundleId: 'org.reactjs.native.example.MtrAcademiaApp'},
-      url: 'https://mtracademiaapp.page.link/VXX6',
-    });
-  };
-
-  const setUsers = async (
-    querySnapshot: FirebaseFirestoreTypes.QuerySnapshot,
-  ) => {
-    const documents: FirebaseFirestoreTypes.DocumentData[] = [];
-
-    querySnapshot.forEach(Document => {
-      delete Document.data().versao;
-
-      documents.push(Document.data());
-    });
-
-    await AsyncStorage.setItem('users', JSON.stringify(documents));
-  };
 
   const onSubmit = async () => {
     setIsLoading(true);
 
-    if (isEmailInvalid()) {
+    if (isEmailInvalid(email)) {
       setShowAlertEmailInvalid(true);
       setIsLoading(false);
       return;
     }
 
-    getQuerySnapshotFromEmail().then(
+    getPessoaQuerySnapshotFromEmail(email).then(
       (querySnapshot: FirebaseFirestoreTypes.QuerySnapshot) => {
         if (querySnapshot.size > 0) {
-          sendEmail().then(() => {
-            setUsers(querySnapshot);
+          sendSignInLinkToEmail(email).then(() => {
+            const users: UserProps[] = [];
+
+            querySnapshot.forEach(Document => {
+              const {id, nome} = Document.data();
+
+              users.push({
+                id: id,
+                nome: nome,
+              });
+            });
+
+            storeUsers(users);
 
             setShowAlertEmailSent(true);
             setIsLoading(false);
@@ -138,37 +109,19 @@ const Login = () => {
       </KeyboardAvoidingView>
       <AlertEmailInvalid
         show={showAlertEmailInvalid}
-        onCancelPressed={() => {
-          setShowAlertEmailInvalid(false);
-        }}
         onConfirmPressed={() => {
-          setShowAlertEmailInvalid(false);
-        }}
-        onDismiss={() => {
           setShowAlertEmailInvalid(false);
         }}
       />
       <AlertEmailNotFound
         show={showAlertEmailNotFound}
-        onCancelPressed={() => {
-          setShowAlertEmailNotFound(false);
-        }}
         onConfirmPressed={() => {
-          setShowAlertEmailNotFound(false);
-        }}
-        onDismiss={() => {
           setShowAlertEmailNotFound(false);
         }}
       />
       <AlertEmailSent
         show={showAlertEmailSent}
-        onCancelPressed={() => {
-          setShowAlertEmailSent(false);
-        }}
         onConfirmPressed={() => {
-          setShowAlertEmailSent(false);
-        }}
-        onDismiss={() => {
           setShowAlertEmailSent(false);
         }}
       />

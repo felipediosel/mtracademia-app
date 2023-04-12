@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
 import {useTheme} from 'styled-components/native';
-import auth from '@react-native-firebase/auth';
 
 import {
   ShieldCheck,
@@ -11,6 +11,9 @@ import {
 } from 'phosphor-react-native';
 
 import useUser from '../../hooks/useUser';
+import {signOut} from '../../hooks/useAuth';
+
+import {formatCpf} from '../../utils/regex';
 
 import {ActivityIndicator} from '../../components/ActivityIndicator';
 import {Background} from '../../components/Background';
@@ -22,25 +25,25 @@ import {AlertSignOut} from '../../components/Alerts/AlertSignOut';
 import {MenuHeader} from '../../components/Menu/MenuHeader';
 
 const UserSettings = (): JSX.Element => {
+  const navigation = useNavigation();
   const theme = useTheme();
 
-  const {isLoading: isUserIsLoading, user, signOut, formatCpf} = useUser();
+  const {isLoading: isUserIsLoading, userData} = useUser();
 
   const [userName, setUserName] = useState<string>('');
   const [userCpf, setUserCpf] = useState<string>('');
-  const [userEmail, setUserEmail] = useState<string>('');
   const [showAlertSignOut, setShowAlertSignOut] = useState<boolean>(false);
 
   useEffect(() => {
-    if (user) {
-      setUserName(user.nome);
-      setUserEmail(user.email);
+    if (userData) {
+      setUserName(userData.nome);
 
-      if (user.cpf) {
-        setUserCpf(formatCpf(user.cpf));
+      if (userData.cpf) {
+        setUserCpf(formatCpf(userData.cpf));
       }
     }
-  }, [user]);
+  }, [userData]);
+
   return (
     <>
       <Background>
@@ -69,10 +72,6 @@ const UserSettings = (): JSX.Element => {
                 <TextSmall style={{color: theme.colors.ts}}>
                   {userCpf ? userCpf : '---'}
                 </TextSmall>
-                <TextSmall
-                  style={{color: theme.colors.ts, textTransform: 'lowercase'}}>
-                  {userEmail ? userEmail : '---'}
-                </TextSmall>
               </>
             )}
           </Container>
@@ -86,13 +85,17 @@ const UserSettings = (): JSX.Element => {
               paddingLeft: theme.responsive.hp('3%'),
             }}>
             <MenuItem
+              onPress={() => {
+                navigation.navigate('PersonalData');
+              }}
               icon={
                 <UserCircle
                   color={theme.colors.pr}
                   size={theme.icons.sizes.sm}
                 />
               }
-              title="Dados Pessoais"></MenuItem>
+              title="Dados Pessoais"
+            />
             <MenuItem
               icon={
                 <SlidersHorizontal
@@ -100,7 +103,8 @@ const UserSettings = (): JSX.Element => {
                   size={theme.icons.sizes.sm}
                 />
               }
-              title="Preferências"></MenuItem>
+              title="Preferências"
+            />
             <MenuItem
               icon={
                 <ShieldCheck
@@ -108,7 +112,8 @@ const UserSettings = (): JSX.Element => {
                   size={theme.icons.sizes.sm}
                 />
               }
-              title="Privacidade"></MenuItem>
+              title="Privacidade"
+            />
             <MenuItem
               onPress={() => {
                 setShowAlertSignOut(true);
@@ -116,7 +121,8 @@ const UserSettings = (): JSX.Element => {
               icon={
                 <SignOut color={theme.colors.pr} size={theme.icons.sizes.sm} />
               }
-              title="Sair"></MenuItem>
+              title="Sair"
+            />
           </Container>
           <Container
             style={{
@@ -137,11 +143,8 @@ const UserSettings = (): JSX.Element => {
           setShowAlertSignOut(false);
         }}
         onConfirmPressed={() => {
-          auth()
-            .signOut()
-            .then(() => {
-              signOut();
-            });
+          setShowAlertSignOut(false);
+          signOut();
         }}
       />
     </>

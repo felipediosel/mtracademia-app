@@ -11,7 +11,7 @@ export function AlertEmailLinkInvalid({...rest}): JSX.Element {
       icon={<LinkBreak size={theme.icons.sizes.lg} color={theme.colors.pr} />}
       mainTitle={
         <>
-          <Text style={{color: theme.colors.pr}}>link</Text> indisponível
+          <Text style={{color: theme.colors.pr}}>link</Text> indisponível!
         </>
       }
       subTitle={

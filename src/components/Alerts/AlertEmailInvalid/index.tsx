@@ -11,7 +11,7 @@ export function AlertEmailInvalid({...rest}): JSX.Element {
       icon={<Textbox size={theme.icons.sizes.lg} color={theme.colors.pr} />}
       mainTitle={
         <>
-          <Text style={{color: theme.colors.pr}}>e-mail</Text> inválido
+          <Text style={{color: theme.colors.pr}}>e-mail</Text> inválido!
         </>
       }
       subTitle={

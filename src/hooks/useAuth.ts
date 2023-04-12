@@ -2,6 +2,8 @@ import {useEffect, useState} from 'react';
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import {clearStoredUser} from './useUser';
+
 const useAuth = () => {
   const [isLoadingAuth, setIsLoadingAuth] = useState<boolean>(true);
   const [isFirstTime, setFirstTime] = useState<boolean>(true);
@@ -10,12 +12,13 @@ const useAuth = () => {
   useEffect(() => {
     const unsubscribe = auth().onIdTokenChanged(
       async (User: FirebaseAuthTypes.User | null) => {
-        setIsLoadingAuth(false);
         setSignedIn(User !== null);
 
         const user = await AsyncStorage.getItem('user');
 
         setFirstTime(user === null);
+
+        setIsLoadingAuth(false);
       },
     );
 
@@ -28,5 +31,24 @@ const useAuth = () => {
     isSignedIn,
   };
 };
+
+export async function sendSignInLinkToEmail(email: string): Promise<void> {
+  await AsyncStorage.setItem('email', email);
+
+  return auth().sendSignInLinkToEmail(email, {
+    android: {packageName: 'com.mtracademiaapp'},
+    handleCodeInApp: true,
+    iOS: {bundleId: 'org.reactjs.native.example.MtrAcademiaApp'},
+    url: 'https://mtracademiaapp.page.link/VXX6',
+  });
+}
+
+export function signOut() {
+  auth()
+    .signOut()
+    .then(() => {
+      clearStoredUser();
+    });
+}
 
 export default useAuth;

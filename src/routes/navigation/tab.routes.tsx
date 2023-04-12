@@ -4,11 +4,11 @@ import {useNavigation} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {
-  SquaresFour,
-  CurrencyDollar,
-  Person,
+  Files,
+  Wallet,
+  DiamondsFour,
+  PersonSimpleRun,
   Barbell,
-  Scroll,
 } from 'phosphor-react-native';
 
 import useUser from '../../hooks/useUser';
@@ -31,15 +31,16 @@ const Tab = createBottomTabNavigator();
 const TabNavigator = (): JSX.Element => {
   const navigation = useNavigation();
   const theme = useTheme();
-  const {isLoading: isUserIsLoading, user} = useUser();
+
+  const {isLoading: isUserIsLoading, userData} = useUser();
 
   const [userName, setUserName] = useState<string>('');
 
   useEffect(() => {
-    if (user) {
-      setUserName(user.nome);
+    if (userData) {
+      setUserName(userData.nome);
     }
-  }, [isUserIsLoading, user]);
+  }, [userData]);
 
   const headerRight = () => {
     return (
@@ -66,7 +67,7 @@ const TabNavigator = (): JSX.Element => {
         name="Plano"
         component={Plan}
         options={{
-          tabBarIcon: ({color, size}) => <Scroll size={size} color={color} />,
+          tabBarIcon: ({color, size}) => <Files size={size} color={color} />,
           headerLeft: () => {
             return <HeaderLeft />;
           },
@@ -88,9 +89,7 @@ const TabNavigator = (): JSX.Element => {
         name="Financeiro"
         component={Finance}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <CurrencyDollar size={size} color={color} />
-          ),
+          tabBarIcon: ({color, size}) => <Wallet size={size} color={color} />,
           headerLeft: () => {
             return <HeaderLeft />;
           },
@@ -113,7 +112,7 @@ const TabNavigator = (): JSX.Element => {
         component={Home}
         options={{
           tabBarIcon: ({color, size}) => (
-            <SquaresFour size={size} color={color} />
+            <DiamondsFour size={size} color={color} />
           ),
           headerLeft: () => {
             return <HeaderLeft />;
@@ -143,7 +142,9 @@ const TabNavigator = (): JSX.Element => {
         name="Corpo"
         component={Body}
         options={{
-          tabBarIcon: ({color, size}) => <Person size={size} color={color} />,
+          tabBarIcon: ({color, size}) => (
+            <PersonSimpleRun size={size} color={color} />
+          ),
           headerLeft: () => {
             return <HeaderLeft />;
           },

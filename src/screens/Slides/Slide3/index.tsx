@@ -10,7 +10,7 @@ export function Slide3() {
   return (
     <>
       <Wallet
-        size={theme.icons.sizes.xl}
+        size={theme.icons.sizes.xxl}
         weight={'regular'}
         color={theme.colors.pr}
       />

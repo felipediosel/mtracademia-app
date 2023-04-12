@@ -1,5 +1,5 @@
 import {Alert} from '../Alert';
-import {EnvelopeSimple} from 'phosphor-react-native';
+import {EnvelopeSimpleOpen} from 'phosphor-react-native';
 import {useTheme} from 'styled-components';
 import {Text} from '../../Texts/Text';
 
@@ -8,12 +8,16 @@ export function AlertEmailSent({...rest}): JSX.Element {
 
   return (
     <Alert
+      confirmText="Entendi"
       icon={
-        <EnvelopeSimple size={theme.icons.sizes.lg} color={theme.colors.pr} />
+        <EnvelopeSimpleOpen
+          size={theme.icons.sizes.lg}
+          color={theme.colors.pr}
+        />
       }
       mainTitle={
         <>
-          <Text style={{color: theme.colors.pr}}>e-mail</Text> enviado
+          <Text style={{color: theme.colors.pr}}>e-mail</Text> enviado!
         </>
       }
       subTitle={

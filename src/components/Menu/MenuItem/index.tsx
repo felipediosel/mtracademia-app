@@ -16,6 +16,8 @@ export function MenuItem({icon, title, ...rest}: MenuItemProps) {
         flexDirection: 'row',
         alignItems: 'center',
         gap: theme.responsive.hp('1%'),
+        borderRadius: 50,
+        height: 35,
       }}
       {...rest}>
       {icon}

@@ -16,6 +16,7 @@ export function MenuHeaderTitle({
     <Text
       style={{
         textAlign: 'left',
+        paddingLeft: theme.responsive.hp('1%'),
       }}>
       <Text style={{color: theme.colors.ts, textAlign: 'left'}}>{upTitle}</Text>
       {'\n'}

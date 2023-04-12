@@ -33,7 +33,7 @@ export function IntroSlider({...rest}): JSX.Element {
   const _renderNextButton = () => {
     return (
       <S.ButtonCircle>
-        <ArrowRight size={25} weight={'bold'} color={theme.colors.pr} />
+        <ArrowRight size={theme.icons.sizes.sm} color={theme.colors.pr} />
       </S.ButtonCircle>
     );
   };
@@ -41,7 +41,7 @@ export function IntroSlider({...rest}): JSX.Element {
   const _renderDoneButton = () => {
     return (
       <S.ButtonCirclePrimary>
-        <Check size={25} weight={'bold'} color={theme.colors.tp} />
+        <Check size={theme.icons.sizes.sm} color={theme.colors.tp} />
       </S.ButtonCirclePrimary>
     );
   };
@@ -56,8 +56,8 @@ export function IntroSlider({...rest}): JSX.Element {
       renderDoneButton={_renderDoneButton}
       renderNextButton={_renderNextButton}
       onDone={_done}
-      dotStyle={{backgroundColor: theme.colors.sc}}
-      activeDotStyle={{backgroundColor: theme.colors.pr}}
+      dotStyle={{backgroundColor: theme.colors.sc, width: 6, height: 6}}
+      activeDotStyle={{backgroundColor: theme.colors.pr, width: 8, height: 8}}
       data={slides}
       {...rest}
     />

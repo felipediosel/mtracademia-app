@@ -10,7 +10,7 @@ export function Slide1() {
   return (
     <>
       <HandWaving
-        size={theme.icons.sizes.xl}
+        size={theme.icons.sizes.xxl}
         weight={'regular'}
         color={theme.colors.pr}
       />

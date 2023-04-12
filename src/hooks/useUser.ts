@@ -1,59 +1,58 @@
 import {useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import {getPessoaFromId} from '../db/Pessoa';
+import {PessoaDTO} from '../db/DTO/PessoaDTO';
+
 export type UserProps = {
   id: number;
   nome: string;
-  cpf: string;
-  rg: string;
-  email: string;
-  celular: string;
-  endereco: string;
-  bairro: string;
-  cidade: string;
 };
 
 const useUser = () => {
   const [isUserIsLoading, setIsUserIsLoading] = useState<boolean>(true);
   const [user, setUser] = useState<UserProps | null>(null);
 
+  const [isUserDataIsLoading, setIsUserDataIsLoading] = useState<boolean>(true);
+  const [userData, setUserData] = useState<PessoaDTO | null>(null);
+
   useEffect(() => {
     AsyncStorage.getItem('user').then(item => {
-      setIsUserIsLoading(false);
+      let userAS = item ? JSON.parse(item) : null;
 
-      const userAsyncStorage = item ? JSON.parse(item) : null;
+      if (userAS) {
+        getPessoaFromId(userAS.id).then((Pessoa: PessoaDTO | null) => {
+          setUserData(Pessoa);
+          setIsUserDataIsLoading(false);
+        });
 
-      if (userAsyncStorage) {
-        setUser(userAsyncStorage);
+        setUser(userAS);
+        setIsUserIsLoading(false);
+      } else {
+        setIsUserIsLoading(false);
+        setIsUserDataIsLoading(false);
       }
     });
   }, []);
 
   return {
-    isLoading: isUserIsLoading,
+    isLoading: isUserIsLoading || isUserDataIsLoading,
     user,
-    signIn,
-    signOut,
-    formatCpf,
+    userData,
   };
 };
 
-export const signIn = (user: UserProps): Promise<void> => {
+export function storeUser(user: UserProps[]): Promise<void> {
   return AsyncStorage.setItem('user', JSON.stringify(user));
-};
+}
 
-export const signOut = (): void => {
+export async function storeUsers(users: UserProps[]) {
+  await AsyncStorage.setItem('users', JSON.stringify(users));
+}
+
+export function clearStoredUser(): void {
   AsyncStorage.removeItem('user');
   AsyncStorage.removeItem('users');
-};
-
-export const formatCpf = (cpf: string): string => {
-  return cpf.replace(
-    /(\d{3})(\d{3})(\d{3})(\d{2})/,
-    function (regex, arg1, arg2, arg3, arg4) {
-      return arg1 + '.' + arg2 + '.' + arg3 + '-' + arg4;
-    },
-  );
-};
+}
 
 export default useUser;

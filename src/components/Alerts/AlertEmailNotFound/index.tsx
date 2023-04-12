@@ -11,7 +11,7 @@ export function AlertEmailNotFound({...rest}): JSX.Element {
       icon={<FolderUser size={theme.icons.sizes.lg} color={theme.colors.pr} />}
       mainTitle={
         <>
-          <Text style={{color: theme.colors.pr}}>Aluno</Text> não encontrado
+          <Text style={{color: theme.colors.pr}}>Nada</Text> encontrado...
         </>
       }
       subTitle={

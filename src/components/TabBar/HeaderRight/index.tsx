@@ -7,7 +7,15 @@ export function HeaderRight({...rest}: TouchableOpacityProps): JSX.Element {
   const theme = useTheme();
 
   return (
-    <TouchableOpacity {...rest}>
+    <TouchableOpacity
+      {...rest}
+      style={{
+        borderRadius: 50,
+        width: 35,
+        height: 35,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
       <UserList size={theme.icons.sizes.sm} color={theme.colors.ts} />
     </TouchableOpacity>
   );

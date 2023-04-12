@@ -15,7 +15,7 @@ export function Slide({content}: SlideProps) {
       <Container
         style={{
           gap: theme.responsive.hp('2%'),
-          padding: theme.responsive.wp('23%'),
+          padding: theme.responsive.wp('20%'),
         }}>
         {content}
       </Container>

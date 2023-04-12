@@ -1,18 +1,15 @@
-import {useEffect} from 'react';
 import {FlatList, TouchableOpacity} from 'react-native';
-import {Question, User} from 'phosphor-react-native';
 
 import {useNavigation} from '@react-navigation/native';
 import {useTheme} from 'styled-components';
 
-import useChooseUser from '../../hooks/useChooseUser';
-import {signIn} from '../../hooks/useUser';
+import {Question, User} from 'phosphor-react-native';
 
-import Loading from '../../screens/Loading';
+import useChooseUser from '../../hooks/useChooseUser';
+import {storeUser} from '../../hooks/useUser';
 
 import {Background} from '../../components/Background';
 import {Container} from '../../components/Container';
-import {TextExtraLarge} from '../../components/Texts/TextExtraLarge';
 import {Text} from '../../components/Texts/Text';
 import {Item} from '../../components/Item';
 import {TextSmall} from '../../components/Texts/TextSmall';
@@ -22,29 +19,17 @@ const ChooseUser = (): JSX.Element => {
 
   const theme = useTheme();
 
-  const {users, isChooseUser, isLoading} = useChooseUser();
-
-  useEffect(() => {
-    if (!isLoading) {
-      if (!isChooseUser) {
-        navigation.navigate('Home');
-      }
-    }
-  }, [isLoading]);
-
-  if (isLoading) {
-    return <Loading />;
-  }
+  const {users} = useChooseUser();
 
   return (
     <Background style={{justifyContent: 'center'}}>
       <Container
         style={{
           gap: theme.responsive.hp('2%'),
-          padding: theme.responsive.wp('13%'),
+          padding: theme.responsive.wp('20%'),
         }}>
         <Container>
-          <Question size={theme.icons.sizes.lg} color={theme.colors.pr} />
+          <Question size={theme.icons.sizes.xl} color={theme.colors.pr} />
         </Container>
         <Container>
           <Text>
@@ -62,7 +47,7 @@ const ChooseUser = (): JSX.Element => {
           <>
             <TouchableOpacity
               onPress={() => {
-                signIn(user).then(() => {
+                storeUser(user).then(() => {
                   navigation.navigate('Home');
                 });
               }}>

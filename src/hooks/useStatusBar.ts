@@ -13,7 +13,7 @@ const useStatusBar = () => {
     if (Platform.OS === 'android') {
       StatusBarNative.setBackgroundColor(theme.colors.bg);
     }
-  }, []);
+  }, [theme]);
 
   return {StatusBarNative};
 };

@@ -24,12 +24,17 @@ export function MenuHeader({...rest}: MenuHeaderTitleProps) {
         }}>
         <Container
           style={{
-            width: 52,
-            height: 41,
             justifyContent: 'center',
-            alignItems: 'flex-start',
+            alignItems: 'center',
           }}>
           <TouchableOpacity
+            style={{
+              borderRadius: 50,
+              width: 35,
+              height: 35,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
             onPress={() => {
               navigation.goBack();
             }}>

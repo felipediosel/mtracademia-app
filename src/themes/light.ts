@@ -52,7 +52,7 @@ export default {
     sm: '10px', //small
     md: '15px', //medium
     widths: {
-      md: '5px', //medium
+      md: '2px', //medium
     },
   },
   icons: {
@@ -61,6 +61,7 @@ export default {
       md: 35,
       lg: 45,
       xl: 95,
+      xxl: 115,
     },
   },
 };

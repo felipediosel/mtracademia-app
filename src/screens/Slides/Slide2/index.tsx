@@ -1,4 +1,4 @@
-import {FileText} from 'phosphor-react-native';
+import {Files} from 'phosphor-react-native';
 import {Text} from '../../../components/Texts/Text';
 import {TextExtraLarge} from '../../../components/Texts/TextExtraLarge';
 import {useTheme} from 'styled-components';
@@ -9,8 +9,8 @@ export function Slide2() {
 
   return (
     <>
-      <FileText
-        size={theme.icons.sizes.xl}
+      <Files
+        size={theme.icons.sizes.xxl}
         weight={'regular'}
         color={theme.colors.pr}
       />
