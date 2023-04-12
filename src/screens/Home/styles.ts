@@ -18,11 +18,28 @@ export const Title = styled.Text`
 
 export const Item = styled.View`
   ${({theme}) => css`
+    background: ${theme.colors.sc};
     border-radius: ${theme.borders.md};
     border-width: ${theme.borders.widths.md};
     border-color: ${theme.colors.sc};
-    padding: ${theme.paddings.ph} ${theme.paddings.pv};
-    margin: ${theme.margins.mh} ${theme.margins.mv};
+    margin-top: ${theme.margins.mh};
+    height: ${theme.heights.md};
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+  `}
+`;
+
+export const Item2 = styled.View`
+  ${({theme}) => css`
+    border-radius: ${theme.borders.md};
+    border-width: ${theme.borders.widths.md};
+    border-color: ${theme.colors.sc};
     height: ${theme.heights.lg};
+    width: 48%;
+    justify-content: center;
+    align-items: center;
   `}
 `;

@@ -81,7 +81,7 @@ const Preferences = (): JSX.Element => {
                 borderWidth={3}
                 height={theme.responsive.hp('6%')}
                 valuePadding={2}
-                animationDuration={250}
+                animationDuration={225}
                 textContainerStyle={{
                   height: '100%',
                   width: '100%',
