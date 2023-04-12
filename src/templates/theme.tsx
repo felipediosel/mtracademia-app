@@ -4,7 +4,7 @@ import {ThemeProvider} from 'styled-components';
 import themes from '../themes';
 
 type Props = {
-  children: React.ReactNode;
+  children: JSX.Element;
 };
 
 export function Theme({children}: Props) {

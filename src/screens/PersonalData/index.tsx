@@ -4,6 +4,7 @@ import {
   EnvelopeSimple,
   House,
   IdentificationBadge,
+  IdentificationCard,
   Phone,
 } from 'phosphor-react-native';
 
@@ -15,7 +16,7 @@ import {Container} from '../../components/Container';
 import {MenuItem} from '../../components/Menu/MenuItem';
 import {TextSmall} from '../../components/Texts/TextSmall';
 import Loading from '../Loading';
-import {formatPhone} from '../../utils/regex';
+import {formatCpf, formatPhone} from '../../utils/regex';
 
 const PersonalData = (): JSX.Element => {
   const theme = useTheme();
@@ -23,6 +24,7 @@ const PersonalData = (): JSX.Element => {
   const {isLoading: isUserIsLoading, userData} = useUser();
 
   const [userRg, setUserRg] = useState<string>('');
+  const [userCpf, setUserCpf] = useState<string>('');
   const [userEndereco, setUserEndereco] = useState<string>('');
   const [userBairro, setUserBairro] = useState<string>('');
   const [userCidade, setUserCidade] = useState<string>('');
@@ -36,6 +38,10 @@ const PersonalData = (): JSX.Element => {
       setUserBairro(userData.bairro);
       setUserCidade(userData.cidade);
       setUserEmail(userData.email);
+
+      if (userData.cpf) {
+        setUserCpf(formatCpf(userData.cpf));
+      }
 
       if (userData.celular) {
         setUserCelular(formatPhone(userData.celular));
@@ -77,18 +83,18 @@ const PersonalData = (): JSX.Element => {
                   }}>
                   <MenuItem
                     icon={
-                      <IdentificationBadge
+                      <IdentificationCard
                         color={theme.colors.pr}
                         size={theme.icons.sizes.sm}
                       />
                     }
-                    title="RG"
+                    title="CPF"
                   />
                   <TextSmall
                     style={{
                       color: theme.colors.ts,
                     }}>
-                    {userRg ? userRg : '---'}
+                    {userCpf ? userCpf : '---'}
                   </TextSmall>
                 </Container>
                 <Container

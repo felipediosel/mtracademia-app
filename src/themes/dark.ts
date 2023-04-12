@@ -11,7 +11,7 @@ export default {
   },
   colors: {
     tp: '#FFFFFF', //text-primary
-    ts: '#57605E', //text-secondary
+    ts: '#767577', //text-secondary
     bg: '#101218', //background
     pr: '#E76124', //primary
     sc: '#1E1E24', //secondary
@@ -52,7 +52,7 @@ export default {
     sm: '10px', //small
     md: '15px', //medium
     widths: {
-      md: '2px', //medium
+      md: '3px', //medium
     },
   },
   icons: {

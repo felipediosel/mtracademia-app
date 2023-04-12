@@ -178,7 +178,7 @@ const TabNavigator = (): JSX.Element => {
             paddingRight: theme.responsive.hp('3%'),
           },
           headerTitle: () => {
-            return <HeaderTitle upTitle="Meu" downTitle="Treino" />;
+            return <HeaderTitle upTitle="Meu" downTitle="Treinos" />;
           },
           headerStatusBarHeight: 2,
           headerTitleAlign: 'left',

@@ -13,8 +13,6 @@ import {
 import useUser from '../../hooks/useUser';
 import {signOut} from '../../hooks/useAuth';
 
-import {formatCpf} from '../../utils/regex';
-
 import {ActivityIndicator} from '../../components/ActivityIndicator';
 import {Background} from '../../components/Background';
 import {Container} from '../../components/Container';
@@ -31,16 +29,11 @@ const UserSettings = (): JSX.Element => {
   const {isLoading: isUserIsLoading, userData} = useUser();
 
   const [userName, setUserName] = useState<string>('');
-  const [userCpf, setUserCpf] = useState<string>('');
   const [showAlertSignOut, setShowAlertSignOut] = useState<boolean>(false);
 
   useEffect(() => {
     if (userData) {
       setUserName(userData.nome);
-
-      if (userData.cpf) {
-        setUserCpf(formatCpf(userData.cpf));
-      }
     }
   }, [userData]);
 
@@ -69,9 +62,7 @@ const UserSettings = (): JSX.Element => {
             ) : (
               <>
                 <Text>{userName}</Text>
-                <TextSmall style={{color: theme.colors.ts}}>
-                  {userCpf ? userCpf : '---'}
-                </TextSmall>
+                <TextSmall style={{color: theme.colors.ts}}>Aluno</TextSmall>
               </>
             )}
           </Container>
@@ -97,6 +88,9 @@ const UserSettings = (): JSX.Element => {
               title="Dados Pessoais"
             />
             <MenuItem
+              onPress={() => {
+                navigation.navigate('Preferences');
+              }}
               icon={
                 <SlidersHorizontal
                   color={theme.colors.pr}
@@ -106,6 +100,9 @@ const UserSettings = (): JSX.Element => {
               title="Preferências"
             />
             <MenuItem
+              onPress={() => {
+                navigation.navigate('Privacy');
+              }}
               icon={
                 <ShieldCheck
                   color={theme.colors.pr}

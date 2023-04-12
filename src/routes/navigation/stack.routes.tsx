@@ -14,6 +14,8 @@ import Login from '../../screens/Login';
 import ChooseUser from '../../screens/ChooseUser';
 import UserSettings from '../../screens/UserSettings';
 import PersonalData from '../../screens/PersonalData';
+import Preferences from '../../screens/Preferences';
+import Privacy from '../../screens/Privacy';
 
 import {Background} from '../../components/Background';
 import {StatusBar} from '../../components/StatusBar';
@@ -29,6 +31,8 @@ export type RootStackParamList = {
   Home: undefined;
   UserSettings: undefined;
   PersonalData: undefined;
+  Preferences: undefined;
+  Privacy: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -89,6 +93,8 @@ const Navigator = (): JSX.Element => {
             <Stack.Screen name="Home" component={TabNavigator} />
             <Stack.Screen name="UserSettings" component={UserSettings} />
             <Stack.Screen name="PersonalData" component={PersonalData} />
+            <Stack.Screen name="Preferences" component={Preferences} />
+            <Stack.Screen name="Privacy" component={Privacy} />
           </Stack.Navigator>
         </SafeAreaView>
       </Background>
