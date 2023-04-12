@@ -140,6 +140,7 @@ const Preferences = (): JSX.Element => {
                 title="Notificações"
               />
               <Switch
+                style={{transform: [{scaleX: 0.8}, {scaleY: 0.8}]}}
                 trackColor={{false: theme.colors.sc, true: theme.colors.sc}}
                 thumbColor={
                   isEnabledNotifications ? theme.colors.pr : theme.colors.ts
@@ -166,6 +167,7 @@ const Preferences = (): JSX.Element => {
                 title="Boas-vindas"
               />
               <Switch
+                style={{transform: [{scaleX: 0.8}, {scaleY: 0.8}]}}
                 trackColor={{false: theme.colors.sc, true: theme.colors.sc}}
                 thumbColor={
                   isEnabledWelcome ? theme.colors.pr : theme.colors.ts

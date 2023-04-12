@@ -12,8 +12,11 @@ import {
   Binoculars,
   Calendar,
   CheckSquare,
+  Clock,
   Drop,
+  DropHalfBottom,
   Fingerprint,
+  Gauge,
   HandbagSimple,
   Handshake,
   HourglassMedium,
@@ -161,7 +164,7 @@ const Home = (): JSX.Element => {
                     style={{
                       color: theme.colors.ts,
                     }}>
-                    Plano
+                    Contrato
                   </TextSmall>
                   <Handshake
                     size={theme.icons.sizes.sm}
@@ -176,12 +179,9 @@ const Home = (): JSX.Element => {
                     style={{
                       color: theme.colors.ts,
                     }}>
-                    Restam
+                    Expira em
                   </TextSmall>
-                  <HourglassMedium
-                    size={theme.icons.sizes.sm}
-                    color={theme.colors.pr}
-                  />
+                  <Clock size={theme.icons.sizes.sm} color={theme.colors.pr} />
                   <TextSmall>183 dias</TextSmall>
                 </Container>
               </S.Item2>
@@ -200,10 +200,7 @@ const Home = (): JSX.Element => {
                     }}>
                     Peso
                   </TextSmall>
-                  <HandbagSimple
-                    size={theme.icons.sizes.sm}
-                    color={theme.colors.pr}
-                  />
+                  <Gauge size={theme.icons.sizes.sm} color={theme.colors.pr} />
                   <TextSmall>90 kg</TextSmall>
                 </Container>
               </S.Item2>
@@ -215,7 +212,10 @@ const Home = (): JSX.Element => {
                     }}>
                     Gordura
                   </TextSmall>
-                  <Drop size={theme.icons.sizes.sm} color={theme.colors.pr} />
+                  <DropHalfBottom
+                    size={theme.icons.sizes.sm}
+                    color={theme.colors.pr}
+                  />
                   <TextSmall>12 %</TextSmall>
                 </Container>
               </S.Item2>

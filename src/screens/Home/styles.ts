@@ -28,7 +28,7 @@ export const Item = styled.View`
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    gap: 20px;
+    gap: 18px;
   `}
 `;
 
