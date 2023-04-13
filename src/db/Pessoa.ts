@@ -3,18 +3,25 @@ import firestore, {
 } from '@react-native-firebase/firestore';
 
 import {PessoaDTO} from './DTO/PessoaDTO';
+import {getLastVersion} from './Versao';
 
 export async function getPessoaFromId(id: number): Promise<PessoaDTO | null> {
-  const QuerySnapshotPessoa = await firestore()
-    .collection<PessoaDTO>('pessoa')
-    .where('id', '==', id)
-    .get();
+  const lastVersion = await getLastVersion();
 
-  if (QuerySnapshotPessoa.size > 0) {
-    const DocumentPessoa = QuerySnapshotPessoa.docs.shift();
+  if (lastVersion) {
+    const QuerySnapshot = await firestore()
+      .collection<PessoaDTO>('pessoa')
+      .where('versao', '==', lastVersion.ref)
+      .where('id', '==', id)
+      .limit(1)
+      .get();
 
-    if (DocumentPessoa !== undefined) {
-      return DocumentPessoa.data();
+    if (!QuerySnapshot.empty) {
+      const DocumentData = QuerySnapshot.docs.shift();
+
+      if (DocumentData !== undefined) {
+        return DocumentData.data();
+      }
     }
   }
 
@@ -23,11 +30,12 @@ export async function getPessoaFromId(id: number): Promise<PessoaDTO | null> {
 
 export async function getPessoaQuerySnapshotFromEmail(
   email: string,
-): Promise<
-  FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>
-> {
+): Promise<FirebaseFirestoreTypes.QuerySnapshot> {
+  const lastVersion = await getLastVersion();
+
   return firestore()
     .collection<PessoaDTO>('pessoa')
+    .where('versao', '==', lastVersion ? lastVersion.ref : null)
     .where('email', 'in', [email, email.toLocaleLowerCase()])
     .get();
 }

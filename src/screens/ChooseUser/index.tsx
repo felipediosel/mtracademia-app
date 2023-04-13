@@ -13,6 +13,7 @@ import {Container} from '../../components/Container';
 import {Text} from '../../components/Texts/Text';
 import {Item} from '../../components/Item';
 import {TextSmall} from '../../components/Texts/TextSmall';
+import {TextLarge} from '../../components/Texts/TextLarge';
 
 const ChooseUser = (): JSX.Element => {
   const navigation = useNavigation();
@@ -25,16 +26,14 @@ const ChooseUser = (): JSX.Element => {
     <Background style={{justifyContent: 'center'}}>
       <Container
         style={{
-          gap: theme.responsive.hp('2%'),
           padding: theme.responsive.wp('20%'),
+          height: theme.responsive.hp('30%'),
         }}>
+        <Question size={theme.icons.sizes.xl} color={theme.colors.pr} />
         <Container>
-          <Question size={theme.icons.sizes.xl} color={theme.colors.pr} />
-        </Container>
-        <Container>
-          <Text>
-            Quem é <Text style={{color: theme.colors.pr}}>você</Text>?
-          </Text>
+          <TextLarge>
+            Quem é <TextLarge style={{color: theme.colors.pr}}>você</TextLarge>?
+          </TextLarge>
           <TextSmall style={{color: theme.colors.ts}}>
             Encontramos mais de uma pessoa para o mesmo e-mail. Selecione abaixo
             com qual usuário deseja continuar:

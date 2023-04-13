@@ -129,7 +129,15 @@ const TabNavigator = (): JSX.Element => {
               <HeaderTitle
                 upTitle="Bem vindo,"
                 downTitle={
-                  <>{isUserIsLoading ? <ActivityIndicator /> : userName}</>
+                  <>
+                    {isUserIsLoading ? (
+                      <ActivityIndicator />
+                    ) : userName ? (
+                      userName
+                    ) : (
+                      '---'
+                    )}
+                  </>
                 }
               />
             );

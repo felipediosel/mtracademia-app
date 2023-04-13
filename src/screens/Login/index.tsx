@@ -18,7 +18,6 @@ import {TextInput} from '../../components/TextInput';
 import {ImageBackground} from '../../components/ImageBackground';
 import {TouchableOpacity} from '../../components/TouchableOpacity';
 import {Text} from '../../components/Texts/Text';
-import {TextMini} from '../../components/Texts/TextMini';
 import {Container} from '../../components/Container';
 import {AlertEmailInvalid} from '../../components/Alerts/AlertEmailInvalid';
 import {AlertEmailNotFound} from '../../components/Alerts/AlertEmailNotFound';
@@ -81,29 +80,16 @@ const Login = () => {
               placeholderTextColor={theme.colors.ts}
               onChangeText={(text: string) => setEmail(text)}
             />
-            <Container>
-              <TextMini>
-                Ao entrar, você concorda com os nossos{' '}
-                <TextMini
-                  style={{
-                    textDecorationLine: 'underline',
-                    color: theme.colors.pr,
-                  }}>
-                  termos de uso
-                </TextMini>
-                .
-              </TextMini>
-              <TouchableOpacity
-                onPress={onSubmit}
-                loading={isLoading}
-                disabled={isLoading}
-                children={
-                  <Container style={{flexDirection: 'row'}}>
-                    <Text>Entrar</Text>
-                  </Container>
-                }
-              />
-            </Container>
+            <TouchableOpacity
+              onPress={onSubmit}
+              loading={isLoading}
+              disabled={isLoading}
+              children={
+                <Container style={{flexDirection: 'row'}}>
+                  <Text>Entrar</Text>
+                </Container>
+              }
+            />
           </Foreground>
         </Background>
       </KeyboardAvoidingView>

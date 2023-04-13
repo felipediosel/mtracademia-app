@@ -14,7 +14,7 @@ const Workout = (): JSX.Element => {
     <Background style={{justifyContent: 'center'}}>
       <Container
         style={{
-          padding: theme.responsive.wp('25%'),
+          padding: theme.responsive.wp('20%'),
         }}>
         <Timer
           size={theme.icons.sizes.xl}

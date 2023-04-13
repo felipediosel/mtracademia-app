@@ -12,6 +12,7 @@ import {
 
 import useUser from '../../hooks/useUser';
 import {signOut} from '../../hooks/useAuth';
+import useVersion from '../../hooks/useVersion';
 
 import {ActivityIndicator} from '../../components/ActivityIndicator';
 import {Background} from '../../components/Background';
@@ -21,6 +22,7 @@ import {Text} from '../../components/Texts/Text';
 import {TextSmall} from '../../components/Texts/TextSmall';
 import {AlertSignOut} from '../../components/Alerts/AlertSignOut';
 import {MenuHeader} from '../../components/Menu/MenuHeader';
+import {formatDate} from '../../utils/date';
 
 const UserSettings = (): JSX.Element => {
   const navigation = useNavigation();
@@ -28,7 +30,11 @@ const UserSettings = (): JSX.Element => {
 
   const {isLoading: isUserIsLoading, userData} = useUser();
 
+  const {isLoading: isVersionIsLoading, version} = useVersion();
+
   const [userName, setUserName] = useState<string>('');
+  const [lastSync, setLastSync] = useState<string>('');
+
   const [showAlertSignOut, setShowAlertSignOut] = useState<boolean>(false);
 
   useEffect(() => {
@@ -36,6 +42,12 @@ const UserSettings = (): JSX.Element => {
       setUserName(userData.nome);
     }
   }, [userData]);
+
+  useEffect(() => {
+    if (version) {
+      setLastSync(formatDate(version.data().datahora));
+    }
+  }, [version]);
 
   return (
     <>
@@ -61,7 +73,7 @@ const UserSettings = (): JSX.Element => {
               <ActivityIndicator />
             ) : (
               <>
-                <Text>{userName}</Text>
+                <Text>{userName ? userName : '---'}</Text>
                 <TextSmall style={{color: theme.colors.ts}}>Aluno</TextSmall>
               </>
             )}
@@ -128,9 +140,16 @@ const UserSettings = (): JSX.Element => {
               width: '100%',
             }}>
             <TextSmall style={{color: theme.colors.ts}}>Versão 1.0.0</TextSmall>
-            <TextSmall style={{color: theme.colors.ts}}>
-              Última sincronização:{'\n'} 10/04/2022 às 13:05
-            </TextSmall>
+            {isUserIsLoading ? (
+              <ActivityIndicator />
+            ) : (
+              <>
+                <TextSmall style={{color: theme.colors.ts}}>
+                  Última sincronização:{'\n'}
+                  {lastSync ? lastSync : '---'}
+                </TextSmall>
+              </>
+            )}
           </Container>
         </Container>
       </Background>

@@ -4,29 +4,23 @@ import firestore from '@react-native-firebase/firestore';
 import {FlatList} from 'react-native';
 
 import * as S from './styles';
-import Loading from '../../screens/Loading';
+
 import {Background} from '../../components/Background';
 import {Container} from '../../components/Container';
 import {MenuItem} from '../../components/Menu/MenuItem';
 import {
   Binoculars,
-  Calendar,
   CheckSquare,
   Clock,
-  Drop,
   DropHalfBottom,
   Fingerprint,
   Gauge,
-  HandbagSimple,
   Handshake,
-  HourglassMedium,
-  IdentificationCard,
   Square,
   XSquare,
 } from 'phosphor-react-native';
 import {useTheme} from 'styled-components/native';
 import {TextSmall} from '../../components/Texts/TextSmall';
-import {Text} from '../../components/Texts/Text';
 
 const Home = (): JSX.Element => {
   const theme = useTheme();
@@ -149,7 +143,7 @@ const Home = (): JSX.Element => {
               style={{
                 color: theme.colors.ts,
               }}>
-              Atalhos para seus dados.
+              Resumo dos seus dados.
             </TextSmall>
             <Container
               style={{

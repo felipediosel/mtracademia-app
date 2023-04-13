@@ -194,7 +194,7 @@ const Preferences = (): JSX.Element => {
                 style={{
                   color: theme.colors.ts,
                 }}>
-                Defina a ordem dos atalhos.
+                Defina a ordem do resumo.
               </TextSmall>
             </Container>
           </Container>
