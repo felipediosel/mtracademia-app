@@ -10,7 +10,9 @@ import {Container} from '../../components/Container';
 import {MenuItem} from '../../components/Menu/MenuItem';
 import {
   Binoculars,
+  CheckCircle,
   CheckSquare,
+  CheckSquareOffset,
   Clock,
   DropHalfBottom,
   Fingerprint,
@@ -21,6 +23,7 @@ import {
 } from 'phosphor-react-native';
 import {useTheme} from 'styled-components/native';
 import {TextSmall} from '../../components/Texts/TextSmall';
+import {HomeSlider} from '../../components/Slider/HomeSlider';
 
 const Home = (): JSX.Element => {
   const theme = useTheme();
@@ -40,7 +43,7 @@ const Home = (): JSX.Element => {
           }}></Container>
         <Container
           style={{
-            height: '50%',
+            height: '65%',
             width: '100%',
             gap: theme.responsive.hp('5%'),
             justifyContent: 'flex-start',
@@ -52,7 +55,6 @@ const Home = (): JSX.Element => {
             style={{
               alignItems: 'flex-start',
               width: '100%',
-              borderWidth: 0,
             }}>
             <MenuItem
               icon={
@@ -75,7 +77,7 @@ const Home = (): JSX.Element => {
                 <TextSmall>Dom</TextSmall>
               </Container>
               <Container>
-                <CheckSquare
+                <CheckSquareOffset
                   size={theme.icons.sizes.sm}
                   color={theme.colors.pr}
                 />
@@ -87,7 +89,7 @@ const Home = (): JSX.Element => {
                 </TextSmall>
               </Container>
               <Container>
-                <CheckSquare
+                <CheckSquareOffset
                   size={theme.icons.sizes.sm}
                   color={theme.colors.pr}
                 />
@@ -99,7 +101,7 @@ const Home = (): JSX.Element => {
                 </TextSmall>
               </Container>
               <Container>
-                <CheckSquare
+                <CheckSquareOffset
                   size={theme.icons.sizes.sm}
                   color={theme.colors.pr}
                 />
@@ -127,8 +129,8 @@ const Home = (): JSX.Element => {
           <Container
             style={{
               alignItems: 'flex-start',
+              height: '100%',
               width: '100%',
-              borderWidth: 0,
             }}>
             <MenuItem
               icon={
@@ -145,75 +147,7 @@ const Home = (): JSX.Element => {
               }}>
               Resumo dos seus dados.
             </TextSmall>
-            <Container
-              style={{
-                flexDirection: 'row',
-                width: '100%',
-                borderWidth: 0,
-                marginTop: 8,
-              }}>
-              <S.Item2>
-                <Container>
-                  <TextSmall
-                    style={{
-                      color: theme.colors.ts,
-                    }}>
-                    Contrato
-                  </TextSmall>
-                  <Handshake
-                    size={theme.icons.sizes.sm}
-                    color={theme.colors.pr}
-                  />
-                  <TextSmall>Anual</TextSmall>
-                </Container>
-              </S.Item2>
-              <S.Item2>
-                <Container>
-                  <TextSmall
-                    style={{
-                      color: theme.colors.ts,
-                    }}>
-                    Expira em
-                  </TextSmall>
-                  <Clock size={theme.icons.sizes.sm} color={theme.colors.pr} />
-                  <TextSmall>183 dias</TextSmall>
-                </Container>
-              </S.Item2>
-            </Container>
-            <Container
-              style={{
-                flexDirection: 'row',
-                width: '100%',
-                borderWidth: 0,
-              }}>
-              <S.Item2>
-                <Container>
-                  <TextSmall
-                    style={{
-                      color: theme.colors.ts,
-                    }}>
-                    Peso
-                  </TextSmall>
-                  <Gauge size={theme.icons.sizes.sm} color={theme.colors.pr} />
-                  <TextSmall>90 kg</TextSmall>
-                </Container>
-              </S.Item2>
-              <S.Item2>
-                <Container>
-                  <TextSmall
-                    style={{
-                      color: theme.colors.ts,
-                    }}>
-                    Gordura
-                  </TextSmall>
-                  <DropHalfBottom
-                    size={theme.icons.sizes.sm}
-                    color={theme.colors.pr}
-                  />
-                  <TextSmall>12 %</TextSmall>
-                </Container>
-              </S.Item2>
-            </Container>
+            <HomeSlider />
           </Container>
         </Container>
       </Container>

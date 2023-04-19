@@ -11,7 +11,7 @@ import {storeUser} from '../../hooks/useUser';
 import {Background} from '../../components/Background';
 import {Container} from '../../components/Container';
 import {Text} from '../../components/Texts/Text';
-import {Item} from '../../components/Item';
+import {Item} from '../../components/Itens/Item';
 import {TextSmall} from '../../components/Texts/TextSmall';
 import {TextLarge} from '../../components/Texts/TextLarge';
 

@@ -131,9 +131,9 @@ const Preferences = (): JSX.Element => {
                   buttonColor={theme.colors.pr}
                   borderColor={theme.colors.sc}
                   backgroundColor={theme.colors.sc}
-                  borderWidth={3}
+                  borderWidth={2}
                   height={theme.responsive.hp('6%')}
-                  valuePadding={2}
+                  valuePadding={4}
                   animationDuration={225}
                   textContainerStyle={{
                     height: '100%',
@@ -206,33 +206,6 @@ const Preferences = (): JSX.Element => {
               <Container
                 style={{
                   alignItems: 'flex-start',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  width: '100%',
-                }}>
-                <MenuItem
-                  icon={
-                    <HandWaving
-                      color={theme.colors.pr}
-                      size={theme.icons.sizes.sm}
-                    />
-                  }
-                  title="Boas-vindas"
-                />
-                <Switch
-                  style={{transform: [{scaleX: 0.8}, {scaleY: 0.8}]}}
-                  trackColor={{false: theme.colors.sc, true: theme.colors.sc}}
-                  thumbColor={
-                    isEnabledWelcome ? theme.colors.pr : theme.colors.ts
-                  }
-                  ios_backgroundColor={theme.colors.sc}
-                  onValueChange={toggleSwitchWelcome}
-                  value={isEnabledWelcome}
-                />
-              </Container>
-              <Container
-                style={{
-                  alignItems: 'flex-start',
                 }}>
                 <MenuItem
                   icon={
@@ -257,5 +230,35 @@ const Preferences = (): JSX.Element => {
     </>
   );
 };
+
+/*
+<Container
+                style={{
+                  alignItems: 'flex-start',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  width: '100%',
+                }}>
+                <MenuItem
+                  icon={
+                    <HandWaving
+                      color={theme.colors.pr}
+                      size={theme.icons.sizes.sm}
+                    />
+                  }
+                  title="Boas-vindas"
+                />
+                <Switch
+                  style={{transform: [{scaleX: 0.8}, {scaleY: 0.8}]}}
+                  trackColor={{false: theme.colors.sc, true: theme.colors.sc}}
+                  thumbColor={
+                    isEnabledWelcome ? theme.colors.pr : theme.colors.ts
+                  }
+                  ios_backgroundColor={theme.colors.sc}
+                  onValueChange={toggleSwitchWelcome}
+                  value={isEnabledWelcome}
+                />
+              </Container>
+*/
 
 export default Preferences;

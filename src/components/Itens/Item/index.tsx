@@ -1,8 +1,9 @@
 import {ViewProps} from 'react-native';
+
 import * as S from './styles';
 
 type ItemProps = ViewProps & {
-  children: React.ReactNode;
+  children: JSX.Element;
 };
 
 export function Item({children, ...rest}: ItemProps) {

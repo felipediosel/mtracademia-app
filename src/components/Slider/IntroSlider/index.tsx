@@ -6,6 +6,7 @@ import {Slide2} from '../../../screens/Slides/Slide2';
 import {Slide3} from '../../../screens/Slides/Slide3';
 import {Slide4} from '../../../screens/Slides/Slide4';
 import {Slide5} from '../../../screens/Slides/Slide5';
+
 import {Slide} from '../../Slider/Slide';
 
 import {ArrowRight, Check} from 'phosphor-react-native';

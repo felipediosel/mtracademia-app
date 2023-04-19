@@ -1,13 +1,16 @@
 import React from 'react';
-import {Background} from '../../Background';
-import {Container} from '../../Container';
+import {ViewProps} from 'react-native';
+
 import {useTheme} from 'styled-components';
 
-export type SlideProps = {
+import {Background} from '../../Background';
+import {Container} from '../../Container';
+
+export type SlideProps = ViewProps & {
   content: JSX.Element;
 };
 
-export function Slide({content}: SlideProps) {
+export function Slide({content, ...rest}: SlideProps) {
   const theme = useTheme();
 
   return (
@@ -16,7 +19,8 @@ export function Slide({content}: SlideProps) {
         style={{
           gap: theme.responsive.hp('2%'),
           padding: theme.responsive.wp('20%'),
-        }}>
+        }}
+        {...rest}>
         {content}
       </Container>
     </Background>

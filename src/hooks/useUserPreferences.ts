@@ -33,9 +33,10 @@ const useUserPreferences = () => {
       if (userPreferencesAS) {
         if (user) {
           setUserPreferences(userPreferencesAS[user.id]);
-          setIsUserPreferencesIsLoading(false);
         }
       }
+
+      setIsUserPreferencesIsLoading(false);
     });
   }, [user]);
 
