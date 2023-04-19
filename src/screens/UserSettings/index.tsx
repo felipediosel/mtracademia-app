@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {useTheme} from 'styled-components/native';
 
@@ -22,6 +22,7 @@ import {Text} from '../../components/Texts/Text';
 import {TextSmall} from '../../components/Texts/TextSmall';
 import {AlertSignOut} from '../../components/Alerts/AlertSignOut';
 import {MenuHeader} from '../../components/Menu/MenuHeader';
+
 import {formatDate} from '../../utils/date';
 
 const UserSettings = (): JSX.Element => {
