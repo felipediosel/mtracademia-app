@@ -1,10 +1,12 @@
+import {AwesomeAlertProps} from 'react-native-awesome-alerts';
+
 import {useTheme} from 'styled-components';
 import {Plugs} from 'phosphor-react-native';
 
 import {Alert} from '../Alert';
 import {Text} from '../../Texts/Text';
 
-export function AlertSignOut({...rest}): JSX.Element {
+export const AlertSignOut: React.FC<AwesomeAlertProps> = ({...rest}) => {
   const theme = useTheme();
 
   return (
@@ -27,4 +29,4 @@ export function AlertSignOut({...rest}): JSX.Element {
       {...rest}
     />
   );
-}
+};

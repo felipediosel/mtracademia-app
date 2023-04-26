@@ -1,9 +1,14 @@
-import {Alert} from '../Alert';
+import {AwesomeAlertProps} from 'react-native-awesome-alerts';
+
 import {LinkBreak} from 'phosphor-react-native';
 import {useTheme} from 'styled-components';
+
+import {Alert} from '../Alert';
 import {Text} from '../../Texts/Text';
 
-export function AlertEmailLinkInvalid({...rest}): JSX.Element {
+export const AlertEmailLinkInvalid: React.FC<AwesomeAlertProps> = ({
+  ...rest
+}) => {
   const theme = useTheme();
 
   return (
@@ -20,4 +25,4 @@ export function AlertEmailLinkInvalid({...rest}): JSX.Element {
       {...rest}
     />
   );
-}
+};

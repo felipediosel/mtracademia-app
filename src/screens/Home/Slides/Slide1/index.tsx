@@ -5,6 +5,7 @@ import {Clock, DropHalfBottom, Gauge, Handshake} from 'phosphor-react-native';
 import {Container} from '../../../../components/Container';
 import {ItemSmall} from '../../../../components/Itens/ItemSmall';
 import {TextSmall} from '../../../../components/Texts/TextSmall';
+import {Image, ImageBackground} from 'react-native';
 
 export function Slide1() {
   const theme = useTheme();

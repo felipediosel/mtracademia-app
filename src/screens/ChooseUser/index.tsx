@@ -26,8 +26,12 @@ const ChooseUser = (): JSX.Element => {
     <Background style={{justifyContent: 'center'}}>
       <Container
         style={{
+          height: theme.responsive.hp('5%'),
+        }}></Container>
+      <Container
+        style={{
           padding: theme.responsive.wp('20%'),
-          height: theme.responsive.hp('30%'),
+          height: theme.responsive.hp('25%'),
         }}>
         <Question size={theme.icons.sizes.xl} color={theme.colors.pr} />
         <Container>
@@ -47,7 +51,7 @@ const ChooseUser = (): JSX.Element => {
             <TouchableOpacity
               onPress={() => {
                 storeUser(user).then(() => {
-                  navigation.navigate('Home');
+                  navigation.navigate('SignedIn');
                 });
               }}>
               <Item
@@ -55,8 +59,10 @@ const ChooseUser = (): JSX.Element => {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
-                <User size={theme.icons.sizes.md} color={theme.colors.pr} />
-                <Text>{user.nome}</Text>
+                <>
+                  <User size={theme.icons.sizes.md} color={theme.colors.pr} />
+                  <Text>{user.nome}</Text>
+                </>
               </Item>
             </TouchableOpacity>
           </>

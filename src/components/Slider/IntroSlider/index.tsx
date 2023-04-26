@@ -1,30 +1,31 @@
 import {useNavigation} from '@react-navigation/native';
 import {useTheme} from 'styled-components';
-
-import {Slide1} from '../../../screens/Slides/Slide1';
-import {Slide2} from '../../../screens/Slides/Slide2';
-import {Slide3} from '../../../screens/Slides/Slide3';
-import {Slide4} from '../../../screens/Slides/Slide4';
-import {Slide5} from '../../../screens/Slides/Slide5';
-
-import {Slide} from '../../Slider/Slide';
-
-import {ArrowRight, Check} from 'phosphor-react-native';
-
+import {ArrowArcRight, ArrowRight, Check} from 'phosphor-react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
-
+import {Slide} from '../../Slider/Slide';
+import {Welcome} from '../../../screens/IntroSlides/Welcome';
+import {MyFrequency} from '../../../screens/IntroSlides/MyFrequency';
+import {MyPhysicalEvaluations} from '../../../screens/IntroSlides/MyPhysicalEvaluations';
+import {MyPlan} from '../../../screens/IntroSlides/MyPlan';
+import {MyFinancial} from '../../../screens/IntroSlides/MyFinancial';
+import {LetsGo} from '../../../screens/IntroSlides/LetsGo';
 import * as S from './styles';
+import useChooseUser from '../../../hooks/useChooseUser';
+import * as AsyncStorage from '../../../services/async-storage';
 
 export function IntroSlider({...rest}): JSX.Element {
   const navigation = useNavigation();
   const theme = useTheme();
 
+  const {isChooseUser} = useChooseUser();
+
   const slides = [
-    {content: <Slide1 />},
-    {content: <Slide2 />},
-    {content: <Slide3 />},
-    {content: <Slide4 />},
-    {content: <Slide5 />},
+    {content: <Welcome />},
+    {content: <MyFrequency />},
+    {content: <MyPhysicalEvaluations />},
+    {content: <MyPlan />},
+    {content: <MyFinancial />},
+    {content: <LetsGo />},
   ];
 
   const _renderItem = ({item}: any) => {
@@ -47,8 +48,22 @@ export function IntroSlider({...rest}): JSX.Element {
     );
   };
 
+  const _renderSkipButton = () => {
+    return (
+      <S.ButtonCircle>
+        <ArrowArcRight size={theme.icons.sizes.sm} color={theme.colors.pr} />
+      </S.ButtonCircle>
+    );
+  };
+
   const _done = () => {
-    navigation.navigate('ChooseUser');
+    AsyncStorage.Intro.set();
+
+    if (isChooseUser) {
+      return navigation.navigate('ChooseUser');
+    }
+
+    return navigation.navigate('SignedIn');
   };
 
   return (
@@ -56,10 +71,13 @@ export function IntroSlider({...rest}): JSX.Element {
       renderItem={_renderItem}
       renderDoneButton={_renderDoneButton}
       renderNextButton={_renderNextButton}
+      renderSkipButton={_renderSkipButton}
+      showSkipButton={true}
       onDone={_done}
-      dotStyle={{backgroundColor: theme.colors.sc, width: 6, height: 6}}
-      activeDotStyle={{backgroundColor: theme.colors.pr, width: 8, height: 8}}
+      dotStyle={{backgroundColor: theme.colors.sc, width: 8, height: 8}}
+      activeDotStyle={{backgroundColor: theme.colors.pr, width: 25, height: 8}}
       data={slides}
+      dotClickEnabled={false}
       {...rest}
     />
   );

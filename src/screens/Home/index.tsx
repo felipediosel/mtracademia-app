@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import firestore from '@react-native-firebase/firestore';
 
 import {FlatList} from 'react-native';
@@ -25,7 +25,10 @@ import {useTheme} from 'styled-components/native';
 import {TextSmall} from '../../components/Texts/TextSmall';
 import {HomeSlider} from '../../components/Slider/HomeSlider';
 
-const Home = (): JSX.Element => {
+import {ThemeContext} from '../../contexts/theme';
+import {getUserPreferences} from '../../hooks/useUserPreferences';
+
+const Home: React.FC = () => {
   const theme = useTheme();
 
   return (

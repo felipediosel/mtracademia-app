@@ -5,18 +5,18 @@ import {Container} from '../../Container';
 import {Text} from '../../Texts/Text';
 import {TextSmall} from '../../Texts/TextSmall';
 
-type AlertProps = AwesomeAlertProps & {
+export type AlertProps = AwesomeAlertProps & {
   icon: JSX.Element;
   mainTitle: JSX.Element | string;
   subTitle: JSX.Element | string;
 };
 
-export function Alert({
+export const Alert: React.FC<AlertProps> = ({
   icon,
   mainTitle,
   subTitle,
   ...rest
-}: AlertProps): JSX.Element {
+}) => {
   const theme = useTheme();
 
   return (
@@ -91,4 +91,4 @@ export function Alert({
       {...rest}
     />
   );
-}
+};

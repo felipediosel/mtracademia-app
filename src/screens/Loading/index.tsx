@@ -1,7 +1,7 @@
 import {Background} from '../../components/Background';
 import {ActivityIndicator} from '../../components/ActivityIndicator';
 
-const Loading = (): JSX.Element => {
+const Loading: React.FC = () => {
   return (
     <Background style={{justifyContent: 'center'}}>
       <ActivityIndicator />

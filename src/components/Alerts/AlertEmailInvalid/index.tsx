@@ -1,9 +1,12 @@
-import {Alert} from '../Alert';
+import {AwesomeAlertProps} from 'react-native-awesome-alerts';
+
 import {Textbox} from 'phosphor-react-native';
 import {useTheme} from 'styled-components';
+
+import {Alert} from '../Alert';
 import {Text} from '../../Texts/Text';
 
-export function AlertEmailInvalid({...rest}): JSX.Element {
+export const AlertEmailInvalid: React.FC<AwesomeAlertProps> = ({...rest}) => {
   const theme = useTheme();
 
   return (
@@ -20,4 +23,4 @@ export function AlertEmailInvalid({...rest}): JSX.Element {
       {...rest}
     />
   );
-}
+};

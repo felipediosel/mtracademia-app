@@ -1,29 +1,26 @@
+import {View, ViewProps} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-import * as S from './styles';
-
-type SafeAreaViewProps = {
-  children: React.ReactNode;
-  isSignedIn: boolean | undefined;
+type SafeAreaViewProps = ViewProps & {
+  children: JSX.Element;
 };
 
-export function SafeAreaView({
-  children,
-  isSignedIn,
-  ...rest
-}: SafeAreaViewProps) {
-  const insets = useSafeAreaInsets();
+const SafeAreaView: React.FC<SafeAreaViewProps> = ({children, ...rest}) => {
+  const safeAreaInsets = useSafeAreaInsets();
 
   return (
-    <S.SafeAreaView
-      {...rest}
+    <View
       style={{
-        paddingTop: isSignedIn ? insets.top : 0,
-        paddingLeft: insets.left,
-        paddingRight: insets.right,
+        flex: 1,
+        paddingTop: safeAreaInsets.top,
+        paddingLeft: safeAreaInsets.left,
+        paddingRight: safeAreaInsets.right,
         paddingBottom: 0,
-      }}>
+      }}
+      {...rest}>
       {children}
-    </S.SafeAreaView>
+    </View>
   );
-}
+};
+
+export default SafeAreaView;

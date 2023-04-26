@@ -1,9 +1,12 @@
-import {Alert} from '../Alert';
+import {AwesomeAlertProps} from 'react-native-awesome-alerts';
+
 import {FolderUser} from 'phosphor-react-native';
 import {useTheme} from 'styled-components';
+
+import {Alert} from '../Alert';
 import {Text} from '../../Texts/Text';
 
-export function AlertEmailNotFound({...rest}): JSX.Element {
+export const AlertEmailNotFound: React.FC<AwesomeAlertProps> = ({...rest}) => {
   const theme = useTheme();
 
   return (
@@ -23,4 +26,4 @@ export function AlertEmailNotFound({...rest}): JSX.Element {
       {...rest}
     />
   );
-}
+};

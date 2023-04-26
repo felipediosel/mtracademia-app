@@ -12,7 +12,7 @@ const useFirebaseLink = (): [boolean, boolean] => {
   const [onSignIn, isLoading, isError] = useSignIn();
   const [isSignInError, setSignInError] = useState<boolean>(false);
 
-  const handleDynamicLink = useCallback<
+  /*const handleDynamicLink = useCallback<
     (link: FirebaseDynamicLinksTypes.DynamicLink) => void
   >(
     async link => {
@@ -53,7 +53,7 @@ const useFirebaseLink = (): [boolean, boolean] => {
     return () => {
       unsubscribed = true;
     };
-  }, []);
+  }, []);*/
 
   return [isLoading, isError || isSignInError];
 };

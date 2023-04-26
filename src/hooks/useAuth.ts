@@ -1,35 +1,22 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {clearStoredUser} from './useUser';
 
-const useAuth = () => {
-  const [isLoadingAuth, setIsLoadingAuth] = useState<boolean>(true);
-  const [isFirstTime, setFirstTime] = useState<boolean>(true);
-  const [isSignedIn, setSignedIn] = useState<boolean | undefined>(false);
+import {AuthContext, AuthContextData} from '../contexts/auth/index';
 
-  useEffect(() => {
-    const unsubscribe = auth().onIdTokenChanged(
-      async (User: FirebaseAuthTypes.User | null) => {
-        setSignedIn(User !== null);
+const useAuth = (): AuthContextData => {
+  const auth = useContext(AuthContext);
 
-        const user = await AsyncStorage.getItem('user');
-
-        setFirstTime(user === null);
-
-        setIsLoadingAuth(false);
-      },
+  if (auth === null) {
+    throw new Error(
+      'No safe area value available. Make sure you are rendering `<SafeAreaProvider>` at the top of your app.',
     );
+  }
 
-    return () => unsubscribe();
-  }, []);
-
-  return {
-    isLoading: isLoadingAuth,
-    isFirstTime,
-    isSignedIn,
-  };
+  return auth;
 };
 
 export async function sendSignInLinkToEmail(email: string): Promise<void> {

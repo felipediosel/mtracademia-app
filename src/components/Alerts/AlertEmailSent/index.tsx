@@ -1,9 +1,12 @@
-import {Alert} from '../Alert';
+import {AwesomeAlertProps} from 'react-native-awesome-alerts';
+
 import {EnvelopeSimpleOpen} from 'phosphor-react-native';
 import {useTheme} from 'styled-components';
+
+import {Alert} from '../Alert';
 import {Text} from '../../Texts/Text';
 
-export function AlertEmailSent({...rest}): JSX.Element {
+export const AlertEmailSent: React.FC<AwesomeAlertProps> = ({...rest}) => {
   const theme = useTheme();
 
   return (
@@ -29,4 +32,4 @@ export function AlertEmailSent({...rest}): JSX.Element {
       {...rest}
     />
   );
-}
+};

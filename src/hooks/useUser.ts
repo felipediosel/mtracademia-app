@@ -1,10 +1,10 @@
 import {useState, useEffect, useContext} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {getPessoaFromId} from '../db/Pessoa';
-import {PessoaDTO} from '../db/DTO/PessoaDTO';
+import {getPessoaFromId} from '../data/Pessoa';
+import {PessoaDTO} from '../data/DTO/PessoaDTO';
 
-import {ThemeContext} from '../templates/theme';
+import {ThemeContext} from '../contexts/theme';
 
 export type UserProps = {
   id: number;
@@ -18,7 +18,7 @@ const useUser = () => {
   const [isUserDataIsLoading, setIsUserDataIsLoading] = useState<boolean>(true);
   const [userData, setUserData] = useState<PessoaDTO | null>(null);
 
-  const {toggleTheme} = useContext(ThemeContext);
+  const {setTheme} = useContext(ThemeContext);
 
   useEffect(() => {
     AsyncStorage.getItem('user').then(item => {
@@ -32,8 +32,6 @@ const useUser = () => {
 
         setUser(userAS);
         setIsUserIsLoading(false);
-
-        toggleTheme();
       } else {
         setIsUserIsLoading(false);
         setIsUserDataIsLoading(false);

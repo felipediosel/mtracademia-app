@@ -4,7 +4,7 @@ import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 
 import {useTheme} from 'styled-components';
 
-import {getPessoaQuerySnapshotFromEmail} from '../../db/Pessoa';
+import {getPessoaQuerySnapshotFromEmail} from '../../data/Pessoa';
 
 import {sendSignInLinkToEmail} from '../../hooks/useAuth';
 import {storeUsers, UserProps} from '../../hooks/useUser';
@@ -76,7 +76,7 @@ const Login = () => {
           <ImageBackground />
           <Foreground>
             <TextInput
-              placeholder={'SEU E-MAIL'}
+              placeholder={'DIGITE SEU E-MAIL'}
               placeholderTextColor={theme.colors.ts}
               onChangeText={(text: string) => setEmail(text)}
             />

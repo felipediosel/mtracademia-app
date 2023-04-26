@@ -1,17 +1,19 @@
-import {Theme} from './src/templates/theme';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer as NavigationProvider} from '@react-navigation/native';
+import ThemeProvider from './src/contexts/theme/provider';
+import AuthProvider from './src/contexts/auth/provider';
+import StatusBar from './src/components/StatusBar';
 import Routes from './src/routes';
 
-const App = () => {
+const App: React.FC = () => {
   return (
-    <Theme>
-      <SafeAreaProvider>
-        <NavigationContainer>
-          <Routes.Navigator />
-        </NavigationContainer>
-      </SafeAreaProvider>
-    </Theme>
+    <NavigationProvider>
+      <AuthProvider>
+        <ThemeProvider>
+          <StatusBar />
+          <Routes />
+        </ThemeProvider>
+      </AuthProvider>
+    </NavigationProvider>
   );
 };
 

@@ -17,7 +17,7 @@ import useUserPreferences, {
   storeUserPreferences,
 } from '../../hooks/useUserPreferences';
 
-import {ThemeContext, ThemeType} from '../../templates/theme';
+import {ThemeType, ThemeContext} from '../../contexts/theme';
 
 import Loading from '../Loading';
 
@@ -56,7 +56,7 @@ const Preferences = (): JSX.Element => {
   const {isLoading: isUserPreferencesIsLoading, userPreferences} =
     useUserPreferences();
 
-  const {themeType, toggleTheme} = useContext(ThemeContext);
+  const {setTheme} = useContext(ThemeContext);
 
   useEffect(() => {
     if (userPreferences) {
@@ -124,7 +124,7 @@ const Preferences = (): JSX.Element => {
                       theme: value,
                     });
 
-                    toggleTheme();
+                    setTheme(value);
                   }}
                   textColor={theme.colors.ts}
                   selectedColor={theme.colors.tp}
@@ -134,7 +134,7 @@ const Preferences = (): JSX.Element => {
                   borderWidth={2}
                   height={theme.responsive.hp('6%')}
                   valuePadding={4}
-                  animationDuration={225}
+                  animationDuration={150}
                   textContainerStyle={{
                     height: '100%',
                     width: '100%',

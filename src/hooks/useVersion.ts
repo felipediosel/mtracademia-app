@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 
 import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
-import {getLastVersion} from '../db/Versao';
+import {getLastVersion} from '../data/Versao';
 
 const useVersion = () => {
   const [isVersionIsLoading, setIsVersionIsLoading] = useState<boolean>(true);

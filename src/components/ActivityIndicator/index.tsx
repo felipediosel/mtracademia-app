@@ -1,8 +1,12 @@
-import * as S from './styles';
-import {ActivityIndicator as ActivityIndicatorNative} from 'react-native';
+import {
+  ActivityIndicator as ActivityIndicatorNative,
+  ViewProps,
+} from 'react-native';
 import {useTheme} from 'styled-components';
 
-export function ActivityIndicator({...rest}) {
+import * as S from './styles';
+
+export const ActivityIndicator: React.FC<ViewProps> = ({...rest}) => {
   const theme = useTheme();
 
   return (
@@ -10,4 +14,4 @@ export function ActivityIndicator({...rest}) {
       <ActivityIndicatorNative color={theme.colors.pr} {...rest} />
     </S.ViewActivityIndicator>
   );
-}
+};

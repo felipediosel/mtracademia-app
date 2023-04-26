@@ -24,7 +24,7 @@ export default {
       sm: '10px', //small
       md: '12px', //medium
       lg: '14px', //large
-      xl: '28px', //extra-large
+      xl: '24px', //extra-large
     },
     weights: {
       df: 'bold', //default
@@ -61,7 +61,7 @@ export default {
       md: 35,
       lg: 45,
       xl: 95,
-      xxl: 115,
+      xxl: 155,
     },
   },
 };
