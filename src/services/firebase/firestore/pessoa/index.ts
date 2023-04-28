@@ -1,6 +1,6 @@
 import firestore from '@react-native-firebase/firestore';
 import {PessoaDTO} from './dto';
-import {getLastVersion} from '../../../../data/Versao';
+import {getLastVersionReference} from '../versao';
 
 function collection() {
   return firestore().collection<PessoaDTO>('pessoa');
@@ -9,11 +9,11 @@ function collection() {
 export async function getPessoaFromEmail(
   email: string,
 ): Promise<PessoaDTO[] | null> {
-  const lastVersion = await getLastVersion();
+  const lastVersionReference = await getLastVersionReference();
 
-  if (lastVersion) {
+  if (lastVersionReference) {
     const QuerySnapshot = await collection()
-      .where('versao', '==', lastVersion.ref)
+      .where('versao', '==', lastVersionReference)
       .where('email', 'in', [email, email.toLocaleLowerCase()])
       .get();
 

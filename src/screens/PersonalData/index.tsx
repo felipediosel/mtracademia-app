@@ -17,8 +17,9 @@ import {MenuItem} from '../../components/Menu/MenuItem';
 import {TextSmall} from '../../components/Texts/TextSmall';
 import Loading from '../Loading';
 import {formatCpf, formatPhone} from '../../utils/regex';
+import SafeAreaView from '../../components/SafeAreaView';
 
-const PersonalData = (): JSX.Element => {
+const PersonalData: React.FC = () => {
   const theme = useTheme();
 
   const {isLoading: isUserIsLoading, userData} = useUser();
@@ -50,8 +51,8 @@ const PersonalData = (): JSX.Element => {
   }, [userData]);
 
   return (
-    <>
-      <Background>
+    <Background>
+      <SafeAreaView>
         <MenuHeader upTitle="Meus" downTitle="Dados pessoais" />
         {isUserIsLoading ? (
           <Loading />
@@ -163,8 +164,8 @@ const PersonalData = (): JSX.Element => {
             </Container>
           </>
         )}
-      </Background>
-    </>
+      </SafeAreaView>
+    </Background>
   );
 };
 

@@ -22,6 +22,7 @@ import {Container} from '../../components/Container';
 import {AlertEmailInvalid} from '../../components/Alerts/AlertEmailInvalid';
 import {AlertEmailNotFound} from '../../components/Alerts/AlertEmailNotFound';
 import {AlertEmailSent} from '../../components/Alerts/AlertEmailSent';
+import {sendSignInLink} from '../../services/firebase/auth/email';
 
 const Login = () => {
   const theme = useTheme();
@@ -37,36 +38,17 @@ const Login = () => {
 
     if (isEmailInvalid(email)) {
       setShowAlertEmailInvalid(true);
-      setIsLoading(false);
-      return;
+    } else {
+      const emailSended = await sendSignInLink(email);
+
+      if (emailSended) {
+        setShowAlertEmailSent(true);
+      } else {
+        setShowAlertEmailNotFound(true);
+      }
     }
 
-    getPessoaQuerySnapshotFromEmail(email).then(
-      (querySnapshot: FirebaseFirestoreTypes.QuerySnapshot) => {
-        if (querySnapshot.size > 0) {
-          sendSignInLinkToEmail(email).then(() => {
-            const users: UserProps[] = [];
-
-            querySnapshot.forEach(Document => {
-              const {id, nome} = Document.data();
-
-              users.push({
-                id: id,
-                nome: nome,
-              });
-            });
-
-            storeUsers(users);
-
-            setShowAlertEmailSent(true);
-            setIsLoading(false);
-          });
-        } else {
-          setShowAlertEmailNotFound(true);
-          setIsLoading(false);
-        }
-      },
-    );
+    setIsLoading(false);
   };
 
   return (

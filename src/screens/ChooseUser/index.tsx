@@ -2,25 +2,21 @@ import {FlatList, TouchableOpacity} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 import {useTheme} from 'styled-components';
-
 import {Question, User} from 'phosphor-react-native';
-
-import useChooseUser from '../../hooks/useChooseUser';
-import {storeUser} from '../../hooks/useUser';
-
 import {Background} from '../../components/Background';
 import {Container} from '../../components/Container';
 import {Text} from '../../components/Texts/Text';
 import {Item} from '../../components/Itens/Item';
 import {TextSmall} from '../../components/Texts/TextSmall';
 import {TextLarge} from '../../components/Texts/TextLarge';
+import useAuth from '../../contexts/auth/hooks/useAuth';
 
 const ChooseUser = (): JSX.Element => {
   const navigation = useNavigation();
 
   const theme = useTheme();
 
-  const {users} = useChooseUser();
+  const {users, signIn} = useAuth();
 
   return (
     <Background style={{justifyContent: 'center'}}>
@@ -50,7 +46,7 @@ const ChooseUser = (): JSX.Element => {
           <>
             <TouchableOpacity
               onPress={() => {
-                storeUser(user).then(() => {
+                signIn(user).then(() => {
                   navigation.navigate('SignedIn');
                 });
               }}>
@@ -61,7 +57,7 @@ const ChooseUser = (): JSX.Element => {
                 }}>
                 <>
                   <User size={theme.icons.sizes.md} color={theme.colors.pr} />
-                  <Text>{user.nome}</Text>
+                  <Text>{user.name}</Text>
                 </>
               </Item>
             </TouchableOpacity>

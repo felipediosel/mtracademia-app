@@ -2,7 +2,7 @@ import {View, ViewProps} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 type SafeAreaViewProps = ViewProps & {
-  children: JSX.Element;
+  children?: React.ReactNode | undefined;
 };
 
 const SafeAreaView: React.FC<SafeAreaViewProps> = ({children, ...rest}) => {

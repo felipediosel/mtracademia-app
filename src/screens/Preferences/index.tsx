@@ -26,8 +26,9 @@ import {MenuHeader} from '../../components/Menu/MenuHeader';
 import {Container} from '../../components/Container';
 import {MenuItem} from '../../components/Menu/MenuItem';
 import {TextSmall} from '../../components/Texts/TextSmall';
+import SafeAreaView from '../../components/SafeAreaView';
 
-const Preferences = (): JSX.Element => {
+const Preferences: React.FC = () => {
   const theme = useTheme();
 
   const [isEnabledNotifications, setIsEnabledNotifications] =
@@ -79,8 +80,8 @@ const Preferences = (): JSX.Element => {
   }, [isUserPreferencesIsLoading]);
 
   return (
-    <>
-      <Background>
+    <Background>
+      <SafeAreaView>
         <MenuHeader upTitle="Minhas" downTitle="Preferências" />
         {isUserPreferencesIsLoading ? (
           <Loading />
@@ -226,8 +227,8 @@ const Preferences = (): JSX.Element => {
             </Container>
           </Container>
         )}
-      </Background>
-    </>
+      </SafeAreaView>
+    </Background>
   );
 };
 

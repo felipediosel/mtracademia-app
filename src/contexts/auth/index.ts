@@ -1,13 +1,14 @@
 import {createContext} from 'react';
-import {User} from '../../services/async-storage/user';
+import {UserType} from '../../services/async-storage/user';
 
 export type AuthContextData = {
   loading: boolean;
   error: boolean;
-  signed: boolean;
-  user: User | null;
   intro: boolean;
-  signIn(user: User): Promise<void>;
+  signed: boolean;
+  user: UserType | null;
+  users: UserType[] | null;
+  signIn(user: UserType): Promise<void>;
   signOut(): void;
 };
 

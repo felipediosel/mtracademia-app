@@ -7,26 +7,26 @@ import SignedInStack from '../navigation/stacks/SignedInStack';
 import {AlertEmailLinkInvalid} from '../components/Alerts/AlertEmailLinkInvalid';
 
 const Routes: React.FC = () => {
-  const {loading, error, signed, user, intro} = useAuth();
+  const {loading, error, signed, user, users} = useAuth();
 
   const [showAlertLinkError, setShowAlertLinkError] = useState(false);
 
-  const Component: JSX.Element = useMemo(() => {
-    console.log(loading, error, signed, user, intro);
+  const Component: React.ReactNode = useMemo(() => {
+    console.log(loading, error, signed, user, users);
     if (loading) {
       return <Loading />;
     }
 
     if (signed) {
-      if (!user) {
-        return <FirstTimeStack />;
-      }
-
       return <SignedInStack />;
     }
 
+    if (users && users.length > 1) {
+      return <FirstTimeStack />;
+    }
+
     return <Login />;
-  }, [loading, signed, user]);
+  }, [loading, signed, users]);
 
   useMemo(() => {
     setShowAlertLinkError(error ? true : false);

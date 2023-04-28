@@ -31,11 +31,7 @@ const TabNavigator: React.FC = () => {
   const navigation = useNavigation();
   const theme = useTheme();
 
-  const {loading, user} = useAuth();
-
-  const downTitle = useMemo(() => {
-    return <>{loading ? <ActivityIndicator /> : user ? user.name : '---'}</>;
-  }, [loading, user]);
+  const {user} = useAuth();
 
   const headerRight = () => {
     return (
@@ -48,7 +44,9 @@ const TabNavigator: React.FC = () => {
   };
 
   const headerTitleInicio = () => {
-    return <HeaderTitle upTitle="Bem vindo," downTitle={downTitle} />;
+    return (
+      <HeaderTitle upTitle="Bem vindo," downTitle={user ? user.name : '---'} />
+    );
   };
 
   return (

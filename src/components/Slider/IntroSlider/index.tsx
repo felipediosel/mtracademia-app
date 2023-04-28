@@ -59,11 +59,7 @@ export function IntroSlider({...rest}): JSX.Element {
   const _done = () => {
     AsyncStorage.Intro.set();
 
-    if (isChooseUser) {
-      return navigation.navigate('ChooseUser');
-    }
-
-    return navigation.navigate('SignedIn');
+    return navigation.navigate('Main');
   };
 
   return (

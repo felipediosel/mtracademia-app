@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export async function get(): Promise<string | null> {
-  return AsyncStorage.getItem('email');
+  return AsyncStorage.getItem('@MtrApp:email');
 }
 
 export function set(email: string): Promise<void> {
-  return AsyncStorage.setItem('@MtrAuth:email', email);
+  return AsyncStorage.setItem('@MtrApp:email', email);
 }

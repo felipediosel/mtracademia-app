@@ -6,13 +6,14 @@ import {MenuHeader} from '../../components/Menu/MenuHeader';
 import {Container} from '../../components/Container';
 import {MenuItem} from '../../components/Menu/MenuItem';
 import {TextSmall} from '../../components/Texts/TextSmall';
+import SafeAreaView from '../../components/SafeAreaView';
 
-const Privacy = (): JSX.Element => {
+const Privacy: React.FC = () => {
   const theme = useTheme();
 
   return (
-    <>
-      <Background>
+    <Background>
+      <SafeAreaView>
         <MenuHeader upTitle="Minha" downTitle="Privacidade" />
         <Container
           style={{
@@ -73,8 +74,8 @@ const Privacy = (): JSX.Element => {
             </Container>
           </Container>
         </Container>
-      </Background>
-    </>
+      </SafeAreaView>
+    </Background>
   );
 };
 

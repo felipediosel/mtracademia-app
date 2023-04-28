@@ -3,8 +3,6 @@ import {AuthContext} from '..';
 import * as Auth from '../../../services/firebase/auth';
 import * as DynamicLinks from '../../../services/firebase/dynamic-links';
 import * as AsyncStorage from '../../../services/async-storage';
-import {User} from '../../../services/async-storage/user';
-import {Link} from '../../../services/firebase/dynamic-links/link';
 
 export type AuthProviderProps = {
   children?: React.ReactNode | undefined;
@@ -13,50 +11,61 @@ export type AuthProviderProps = {
 const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
-  const [signed, setSigned] = useState<boolean>(false);
-  const [user, setUser] = useState<User | null>(null);
   const [intro, setIntro] = useState<boolean>(true);
+  const [user, setUser] = useState<AsyncStorage.User.UserType | null>(null);
+  const [users, setUsers] = useState<AsyncStorage.User.UserType[] | null>(null);
 
-  async function signIn(user: User) {
+  async function signIn(user: AsyncStorage.User.UserType) {
     await AsyncStorage.User.set(user);
     setUser(user);
   }
 
   function signOut() {
-    Auth.Email.signOut().then(async () => {
-      await AsyncStorage.User.clean();
-      await AsyncStorage.Intro.clean(); // remover
+    setLoading(true);
 
-      setSigned(false);
-      setUser(null);
+    Auth.Email.signOut().then(async () => {
+      await cleanStoragedData();
+      setLoading(false);
     });
   }
 
-  /* Auth listener */
-  useEffect(() => {
-    const unsubscribe = Auth.Token.onChange(async token => {
-      if (!!token) {
-        setSigned(true);
+  const loadStoragedData = async () => {
+    setUser(await AsyncStorage.User.get());
+    setUsers(await AsyncStorage.Users.get());
+    setIntro(!(await AsyncStorage.Intro.get()));
+  };
 
-        const user = await AsyncStorage.User.get();
-        setUser(user);
+  const cleanStoragedData = async () => {
+    await AsyncStorage.User.clean();
+    await AsyncStorage.Users.clean();
+    await AsyncStorage.Intro.clean(); // remover
 
-        const showed = await AsyncStorage.Intro.get();
-        setIntro(!showed);
-      }
+    setUser(null);
+    setUsers(null);
+    setIntro(true); // remover
+  };
 
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
-  const handleLink = async (link: Link) => {
-    setError(false);
+  const handleDynamicLink = async (Link: DynamicLinks.Link.Link) => {
     setLoading(true);
+    setError(false);
 
     try {
-      await Auth.Email.signIn(link.url);
+      const usersEmail = await Auth.Email.signIn(Link.url);
+
+      if (usersEmail) {
+        await AsyncStorage.Users.set(usersEmail);
+        setUsers(usersEmail);
+
+        if (usersEmail.length === 1) {
+          const firstUser = usersEmail.shift();
+
+          if (firstUser) {
+            signIn(firstUser);
+          }
+        }
+      } else {
+        setError(true);
+      }
     } catch (e) {
       setError(true);
     } finally {
@@ -64,9 +73,16 @@ const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
     }
   };
 
+  useEffect(() => {
+    (async () => {
+      await loadStoragedData();
+      setLoading(false);
+    })();
+  }, []);
+
   /* Dynamic Link listener */
   useEffect(() => {
-    const unsubscribe = DynamicLinks.Link.onLink(handleLink);
+    const unsubscribe = DynamicLinks.Link.onLink(handleDynamicLink);
 
     return () => unsubscribe();
   }, []);
@@ -75,7 +91,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
   useEffect(() => {
     let unsubscribed = false;
 
-    DynamicLinks.Link.onInitialLink(handleLink, unsubscribed);
+    DynamicLinks.Link.onInitialLink(handleDynamicLink, unsubscribed);
 
     return () => {
       unsubscribed = true;
@@ -87,9 +103,10 @@ const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
       value={{
         loading,
         error,
-        signed,
-        user,
         intro,
+        signed: !!user,
+        user,
+        users,
         signIn,
         signOut,
       }}>
