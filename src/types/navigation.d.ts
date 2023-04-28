@@ -1,5 +1,5 @@
 export type RootStackParamList = {
-  Intro: undefined;
+  Intro: {reIntroduction: boolean} | undefined;
   ChooseUser: undefined;
   SignedIn: undefined;
   Main: undefined;

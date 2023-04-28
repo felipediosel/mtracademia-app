@@ -1,6 +1,5 @@
 import {FlatList, TouchableOpacity} from 'react-native';
 
-import {useNavigation} from '@react-navigation/native';
 import {useTheme} from 'styled-components';
 import {Question, User} from 'phosphor-react-native';
 import {Background} from '../../components/Background';
@@ -12,8 +11,6 @@ import {TextLarge} from '../../components/Texts/TextLarge';
 import useAuth from '../../contexts/auth/hooks/useAuth';
 
 const ChooseUser = (): JSX.Element => {
-  const navigation = useNavigation();
-
   const theme = useTheme();
 
   const {users, signIn} = useAuth();
@@ -45,10 +42,8 @@ const ChooseUser = (): JSX.Element => {
         renderItem={({item: user}: any) => (
           <>
             <TouchableOpacity
-              onPress={() => {
-                signIn(user).then(() => {
-                  navigation.navigate('SignedIn');
-                });
+              onPress={async () => {
+                signIn(user);
               }}>
               <Item
                 style={{

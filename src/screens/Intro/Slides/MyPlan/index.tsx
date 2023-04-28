@@ -1,13 +1,13 @@
 import {useTheme} from 'styled-components';
-import {SlideContent} from '../../../components/Slider/SlideContent';
-import {TextExtraLarge} from '../../../components/Texts/TextExtraLarge';
+import {SlideContent} from '../../../../components/Slider/SlideContent';
+import {TextExtraLarge} from '../../../../components/Texts/TextExtraLarge';
 
 export function MyPlan() {
   const theme = useTheme();
 
   return (
     <SlideContent
-      source={require('../../../assets/img/illustrations/contract.png')}
+      source={require('../../../../assets/img/illustrations/contract.png')}
       title={
         <>
           seu{' '}

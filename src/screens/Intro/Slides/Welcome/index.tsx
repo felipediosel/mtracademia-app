@@ -1,5 +1,5 @@
-import {SlideContent} from '../../../components/Slider/SlideContent';
-import {TextExtraLarge} from '../../../components/Texts/TextExtraLarge';
+import {SlideContent} from '../../../../components/Slider/SlideContent';
+import {TextExtraLarge} from '../../../../components/Texts/TextExtraLarge';
 import {useTheme} from 'styled-components';
 
 export function Welcome() {
@@ -8,7 +8,7 @@ export function Welcome() {
   return (
     <>
       <SlideContent
-        source={require('../../../assets/img/illustrations/gym.png')}
+        source={require('../../../../assets/img/illustrations/gym.png')}
         title={
           <>
             Bem vindo{' '}

@@ -5,14 +5,14 @@ import useAuth from '../contexts/auth/hooks/useAuth';
 import FirstTimeStack from '../navigation/stacks/FirstTimeStack';
 import SignedInStack from '../navigation/stacks/SignedInStack';
 import {AlertEmailLinkInvalid} from '../components/Alerts/AlertEmailLinkInvalid';
+import ChooseUser from '../screens/ChooseUser';
 
 const Routes: React.FC = () => {
-  const {loading, error, signed, user, users} = useAuth();
+  const {loading, error, signed, users} = useAuth();
 
   const [showAlertLinkError, setShowAlertLinkError] = useState(false);
 
   const Component: React.ReactNode = useMemo(() => {
-    console.log(loading, error, signed, user, users);
     if (loading) {
       return <Loading />;
     }
@@ -22,7 +22,7 @@ const Routes: React.FC = () => {
     }
 
     if (users && users.length > 1) {
-      return <FirstTimeStack />;
+      return <ChooseUser />;
     }
 
     return <Login />;

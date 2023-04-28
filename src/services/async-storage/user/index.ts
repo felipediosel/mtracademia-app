@@ -1,6 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ColorSchemeName} from 'react-native';
 
+export type UserPreferencesListType = 'theme' | 'notification';
+
 export type UserPreferencesType = {
   theme?: ColorSchemeName;
   notification?: boolean;
@@ -24,4 +26,28 @@ export function set(user: UserType): Promise<void> {
 
 export function clean(): Promise<void> {
   return AsyncStorage.removeItem('@MtrApp:user');
+}
+
+export async function setPreferences(
+  user: UserType | null,
+  preferences: UserPreferencesType,
+): Promise<void> {
+  if (user) {
+    const userPreferences = getPreferences(user);
+
+    Object.assign(userPreferences, preferences);
+
+    user.preferences = userPreferences;
+
+    await set(user);
+
+    console.log(user);
+  }
+}
+
+export function getPreferences(user: UserType | null): UserPreferencesType {
+  const userPreferences: UserPreferencesType =
+    user && user.preferences ? user.preferences : {};
+
+  return userPreferences;
 }

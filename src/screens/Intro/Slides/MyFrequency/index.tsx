@@ -1,13 +1,13 @@
 import {useTheme} from 'styled-components';
-import {SlideContent} from '../../../components/Slider/SlideContent';
-import {TextExtraLarge} from '../../../components/Texts/TextExtraLarge';
+import {SlideContent} from '../../../../components/Slider/SlideContent';
+import {TextExtraLarge} from '../../../../components/Texts/TextExtraLarge';
 
 export function MyFrequency() {
   const theme = useTheme();
 
   return (
     <SlideContent
-      source={require('../../../assets/img/illustrations/frequence.png')}
+      source={require('../../../../assets/img/illustrations/frequence.png')}
       title={
         <>
           Monitore aqui: seus{' '}

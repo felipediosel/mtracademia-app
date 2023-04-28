@@ -1,13 +1,11 @@
 import React from 'react';
 import {ViewProps} from 'react-native';
-
 import {useTheme} from 'styled-components';
-
 import {Background} from '../../Background';
 import {Container} from '../../Container';
 
 export type SlideProps = ViewProps & {
-  content: JSX.Element;
+  content: React.ReactNode;
 };
 
 export function Slide({content, ...rest}: SlideProps) {
