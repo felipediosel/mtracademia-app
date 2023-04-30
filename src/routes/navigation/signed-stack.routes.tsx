@@ -1,16 +1,16 @@
 import {createStackNavigator} from '@react-navigation/stack';
-import {Intro} from '../../../screens/Intro';
-import Main from '../../../screens/Main';
-import Settings from '../../../screens/Settings';
-import PersonalData from '../../../screens/PersonalData';
-import Preferences from '../../../screens/Preferences';
-import Privacy from '../../../screens/Privacy';
-import {RootStackParamList} from '../../../types/navigation';
-import useAuth from '../../../contexts/auth/hooks/useAuth';
+import {Intro} from '../../screens/Intro';
+import Main from '../../screens/Main';
+import Settings from '../../screens/Settings';
+import PersonalData from '../../screens/PersonalData';
+import Preferences from '../../screens/Preferences';
+import Privacy from '../../screens/Privacy';
+import {RootStackParamList} from '../../types/navigation';
+import useAuth from '../../contexts/auth/hooks/useAuth';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
-const SignedInStack: React.FC = () => {
+const SignedStack: React.FC = () => {
   const {intro} = useAuth();
 
   return (
@@ -35,4 +35,4 @@ const SignedInStack: React.FC = () => {
   );
 };
 
-export default SignedInStack;
+export default SignedStack;

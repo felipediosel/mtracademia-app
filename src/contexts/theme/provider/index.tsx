@@ -1,7 +1,7 @@
-import {useEffect, useMemo, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {ColorSchemeName, useColorScheme} from 'react-native';
 import {ThemeProvider as ThemeProviderDefault} from 'styled-components';
-import {ThemeContext, ThemeType} from '..';
+import {ThemeContext, ThemeType, ThemeEnum} from '..';
 import themes from '../../../themes';
 import useAuth from '../../auth/hooks/useAuth';
 
@@ -10,23 +10,29 @@ export type Props = {
 };
 
 const ThemeProvider: React.FC<Props> = ({children}) => {
-  const deviceTheme = useColorScheme();
+  const deviceTheme: ColorSchemeName = useColorScheme();
+  const defaultTheme: ThemeType = deviceTheme ? deviceTheme : ThemeEnum.dark;
+
   const {user} = useAuth();
 
-  const [theme, setTheme] = useState<ColorSchemeName>(deviceTheme);
+  const [theme, setTheme] = useState<ThemeType>(defaultTheme);
+
+  const changeTheme = (theme: ColorSchemeName) => {
+    setTheme(!!theme ? theme : defaultTheme);
+  };
 
   useEffect(() => {
     const userTheme =
       user && user.preferences && user.preferences.theme
         ? user.preferences.theme
-        : deviceTheme;
+        : null;
 
-    setTheme(userTheme);
-  }, [user?.preferences]);
+    changeTheme(userTheme);
+  }, [deviceTheme, user?.preferences]);
 
   return (
-    <ThemeContext.Provider value={{theme, setTheme}}>
-      <ThemeProviderDefault theme={themes[theme ? theme : ThemeType.dark]}>
+    <ThemeContext.Provider value={{theme, changeTheme}}>
+      <ThemeProviderDefault theme={themes[theme]}>
         {children}
       </ThemeProviderDefault>
     </ThemeContext.Provider>

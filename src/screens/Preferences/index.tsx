@@ -13,7 +13,7 @@ import {
   CaretRight,
 } from 'phosphor-react-native';
 import SwitchSelector from 'react-native-switch-selector';
-import {ThemeType} from '../../contexts/theme';
+import {ThemeEnum} from '../../contexts/theme';
 import {Background} from '../../components/Background';
 import {MenuHeader} from '../../components/Menu/MenuHeader';
 import {Container} from '../../components/Container';
@@ -28,7 +28,7 @@ const Preferences: React.FC = () => {
   const navigation = useNavigation();
   const {user} = useAuth();
   const theme = useThemeNative();
-  const {setTheme} = useTheme();
+  const {changeTheme} = useTheme();
 
   const [isEnabledNotifications, setIsEnabledNotifications] =
     useState<boolean>(true);
@@ -49,7 +49,7 @@ const Preferences: React.FC = () => {
     if (userPreferences) {
       if (userPreferences.theme) {
         setInitialSwitchSelector(
-          userPreferences.theme == ThemeType.dark ? 2 : 0,
+          userPreferences.theme == ThemeEnum.dark ? 2 : 0,
         );
       }
 
@@ -104,7 +104,7 @@ const Preferences: React.FC = () => {
                     theme: value,
                   });
 
-                  setTheme(value);
+                  changeTheme(value);
                 }}
                 textColor={theme.colors.ts}
                 selectedColor={theme.colors.tp}
@@ -134,7 +134,7 @@ const Preferences: React.FC = () => {
                 hasPadding={true}
                 options={[
                   {
-                    value: ThemeType.light,
+                    value: ThemeEnum.light,
                     customIcon: (selected: boolean) => {
                       return (
                         <Sun
@@ -146,7 +146,7 @@ const Preferences: React.FC = () => {
                   },
                   {label: 'Auto', value: null},
                   {
-                    value: ThemeType.dark,
+                    value: ThemeEnum.dark,
                     customIcon: (selected: boolean) => {
                       return (
                         <MoonStars

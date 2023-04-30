@@ -1,8 +1,6 @@
 import {AwesomeAlertProps} from 'react-native-awesome-alerts';
-
-import {FolderUser} from 'phosphor-react-native';
+import {SmileySad} from 'phosphor-react-native';
 import {useTheme} from 'styled-components';
-
 import {Alert} from '../Alert';
 import {Text} from '../../Texts/Text';
 
@@ -11,10 +9,10 @@ export const AlertEmailNotFound: React.FC<AwesomeAlertProps> = ({...rest}) => {
 
   return (
     <Alert
-      icon={<FolderUser size={theme.icons.sizes.lg} color={theme.colors.pr} />}
+      icon={<SmileySad size={theme.icons.sizes.lg} color={theme.colors.pr} />}
       mainTitle={
         <>
-          <Text style={{color: theme.colors.pr}}>Nada</Text> encontrado...
+          <Text style={{color: theme.colors.pr}}>E-mail</Text> não encontrado!
         </>
       }
       subTitle={

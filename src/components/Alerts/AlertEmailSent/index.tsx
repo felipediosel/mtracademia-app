@@ -1,6 +1,6 @@
 import {AwesomeAlertProps} from 'react-native-awesome-alerts';
 
-import {EnvelopeSimpleOpen} from 'phosphor-react-native';
+import {EnvelopeSimpleOpen, PaperPlaneRight} from 'phosphor-react-native';
 import {useTheme} from 'styled-components';
 
 import {Alert} from '../Alert';
@@ -13,10 +13,7 @@ export const AlertEmailSent: React.FC<AwesomeAlertProps> = ({...rest}) => {
     <Alert
       confirmText="Entendi"
       icon={
-        <EnvelopeSimpleOpen
-          size={theme.icons.sizes.lg}
-          color={theme.colors.pr}
-        />
+        <PaperPlaneRight size={theme.icons.sizes.lg} color={theme.colors.pr} />
       }
       mainTitle={
         <>

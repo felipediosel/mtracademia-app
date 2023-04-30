@@ -1,10 +1,10 @@
 import {IntroSlider, Item} from '../../components/Slider/IntroSlider';
-import {Welcome} from './Slides/Welcome';
-import {MyFrequency} from './Slides/MyFrequency';
-import {MyPhysicalEvaluations} from './Slides/MyPhysicalEvaluations';
-import {MyPlan} from './Slides/MyPlan';
-import {MyFinancial} from './Slides/MyFinancial';
-import {LetsGo} from './Slides/LetsGo';
+import {Welcome} from './components/Welcome';
+import {MyFrequency} from './components/MyFrequency';
+import {MyPhysicalEvaluations} from './components/MyPhysicalEvaluations';
+import {MyPlan} from './components/MyPlan';
+import {MyFinancial} from './components/MyFinancial';
+import {LetsGo} from './components/LetsGo';
 
 export const Intro: React.FC = () => {
   const data: Item[] = [

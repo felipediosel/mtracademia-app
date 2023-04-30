@@ -10,23 +10,14 @@ import {Container} from '../../components/Container';
 import {MenuItem} from '../../components/Menu/MenuItem';
 import {
   Binoculars,
-  CheckCircle,
-  CheckSquare,
   CheckSquareOffset,
-  Clock,
-  DropHalfBottom,
   Fingerprint,
-  Gauge,
-  Handshake,
   Square,
   XSquare,
 } from 'phosphor-react-native';
 import {useTheme} from 'styled-components/native';
 import {TextSmall} from '../../components/Texts/TextSmall';
 import {HomeSlider} from '../../components/Slider/HomeSlider';
-
-import {ThemeContext} from '../../contexts/theme';
-import {getUserPreferences} from '../../hooks/useUserPreferences';
 
 const Home: React.FC = () => {
   const theme = useTheme();
@@ -72,7 +63,7 @@ const Home: React.FC = () => {
               style={{
                 color: theme.colors.ts,
               }}>
-              Confira sua constância nos treinos.
+              Confira abaixo sua constância nos treinos:
             </TextSmall>
             <S.Item>
               <Container>
@@ -129,7 +120,13 @@ const Home: React.FC = () => {
               </Container>
             </S.Item>
           </Container>
-          <Container
+        </Container>
+      </Container>
+    </Background>
+  );
+  /*
+
+  <Container
             style={{
               alignItems: 'flex-start',
               height: '100%',
@@ -152,11 +149,10 @@ const Home: React.FC = () => {
             </TextSmall>
             <HomeSlider />
           </Container>
-        </Container>
-      </Container>
-    </Background>
-  );
-  /*const [loading, setLoading] = useState(true);
+  
+  
+  
+  const [loading, setLoading] = useState(true);
   const [produtos, setProdutos] = useState([]);
 
   useEffect(() => {

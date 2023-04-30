@@ -1,17 +1,19 @@
 import {createContext} from 'react';
 import {ColorSchemeName} from 'react-native';
 
-export enum ThemeType {
+export type ThemeType = 'light' | 'dark';
+
+export enum ThemeEnum {
   light = 'light',
   dark = 'dark',
 }
 
 export type ThemeContextValue = {
-  theme: ColorSchemeName;
-  setTheme: Function;
+  theme: ThemeType;
+  changeTheme: Function;
 };
 
 export const ThemeContext = createContext<ThemeContextValue>({
-  theme: ThemeType.dark,
-  setTheme: (theme: ColorSchemeName) => {},
+  theme: ThemeEnum.dark,
+  changeTheme: (theme: ColorSchemeName) => {},
 });

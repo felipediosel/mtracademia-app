@@ -40,8 +40,6 @@ export async function setPreferences(
     user.preferences = userPreferences;
 
     await set(user);
-
-    console.log(user);
   }
 }
 

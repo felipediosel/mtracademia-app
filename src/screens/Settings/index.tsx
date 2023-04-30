@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from 'react';
+import {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {useTheme} from 'styled-components/native';
 
@@ -6,53 +6,52 @@ import {
   ShieldCheck,
   SignOut,
   SlidersHorizontal,
-  User,
   UserCircle,
 } from 'phosphor-react-native';
 
-import useUser from '../../hooks/useUser';
-import {signOut} from '../../hooks/useAuth';
-import useVersion from '../../hooks/useVersion';
-
-import {ActivityIndicator} from '../../components/ActivityIndicator';
 import {Background} from '../../components/Background';
 import {Container} from '../../components/Container';
 import {MenuItem} from '../../components/Menu/MenuItem';
-import {Text} from '../../components/Texts/Text';
-import {TextSmall} from '../../components/Texts/TextSmall';
 import {AlertSignOut} from '../../components/Alerts/AlertSignOut';
 import {MenuHeader} from '../../components/Menu/MenuHeader';
-
-import {formatDate} from '../../utils/date';
 import useAuth from '../../contexts/auth/hooks/useAuth';
 import SafeAreaView from '../../components/SafeAreaView';
+import {User} from './components/User';
+import {Version} from './components/Version';
+import {LastSync} from './components/LastSync';
 
 const Settings: React.FC = () => {
   const navigation = useNavigation();
   const theme = useTheme();
 
-  const {isLoading: isUserIsLoading, userData} = useUser();
-
-  const {isLoading: isVersionIsLoading, version} = useVersion();
-
-  const [userName, setUserName] = useState<string>('');
-  const [lastSync, setLastSync] = useState<string>('');
-
   const [showAlertSignOut, setShowAlertSignOut] = useState<boolean>(false);
 
   const {signOut} = useAuth();
 
-  useEffect(() => {
-    if (userData) {
-      setUserName(userData.nome);
-    }
-  }, [userData]);
+  const handlePersonalData = () => {
+    navigation.navigate('PersonalData');
+  };
 
-  useEffect(() => {
-    if (version) {
-      setLastSync(formatDate(version.data().datahora));
-    }
-  }, [version]);
+  const handlePreferences = () => {
+    navigation.navigate('Preferences');
+  };
+
+  const handlePrivacy = () => {
+    navigation.navigate('Privacy');
+  };
+
+  const handleSignOut = () => {
+    setShowAlertSignOut(true);
+  };
+
+  const handleSignOutCancel = () => {
+    setShowAlertSignOut(false);
+  };
+
+  const handleSignOutConfirm = () => {
+    setShowAlertSignOut(false);
+    signOut();
+  };
 
   return (
     <>
@@ -66,24 +65,7 @@ const Settings: React.FC = () => {
               height: '100%',
               width: '100%',
             }}>
-            <Container
-              style={{
-                height: '30%',
-                width: '100%',
-                gap: theme.responsive.hp('1%'),
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <User color={theme.colors.pr} size={theme.icons.sizes.xl} />
-              {isUserIsLoading ? (
-                <ActivityIndicator />
-              ) : (
-                <>
-                  <Text>{userName ? userName : '---'}</Text>
-                  <TextSmall style={{color: theme.colors.ts}}>Aluno</TextSmall>
-                </>
-              )}
-            </Container>
+            <User />
             <Container
               style={{
                 height: '50%',
@@ -94,9 +76,7 @@ const Settings: React.FC = () => {
                 paddingLeft: theme.responsive.hp('3%'),
               }}>
               <MenuItem
-                onPress={() => {
-                  navigation.navigate('PersonalData');
-                }}
+                onPress={handlePersonalData}
                 icon={
                   <UserCircle
                     color={theme.colors.pr}
@@ -106,9 +86,7 @@ const Settings: React.FC = () => {
                 title="Dados Pessoais"
               />
               <MenuItem
-                onPress={() => {
-                  navigation.navigate('Preferences');
-                }}
+                onPress={handlePreferences}
                 icon={
                   <SlidersHorizontal
                     color={theme.colors.pr}
@@ -118,9 +96,7 @@ const Settings: React.FC = () => {
                 title="Preferências"
               />
               <MenuItem
-                onPress={() => {
-                  navigation.navigate('Privacy');
-                }}
+                onPress={handlePrivacy}
                 icon={
                   <ShieldCheck
                     color={theme.colors.pr}
@@ -130,9 +106,7 @@ const Settings: React.FC = () => {
                 title="Privacidade"
               />
               <MenuItem
-                onPress={() => {
-                  setShowAlertSignOut(true);
-                }}
+                onPress={handleSignOut}
                 icon={
                   <SignOut
                     color={theme.colors.pr}
@@ -148,32 +122,16 @@ const Settings: React.FC = () => {
                 alignItems: 'center',
                 width: '100%',
               }}>
-              <TextSmall style={{color: theme.colors.ts}}>
-                Versão 1.0.0
-              </TextSmall>
-              {isUserIsLoading ? (
-                <ActivityIndicator />
-              ) : (
-                <>
-                  <TextSmall style={{color: theme.colors.ts}}>
-                    Última sincronização:{'\n'}
-                    {lastSync ? lastSync : '---'}
-                  </TextSmall>
-                </>
-              )}
+              <Version />
+              <LastSync />
             </Container>
           </Container>
         </SafeAreaView>
       </Background>
       <AlertSignOut
         show={showAlertSignOut}
-        onCancelPressed={() => {
-          setShowAlertSignOut(false);
-        }}
-        onConfirmPressed={() => {
-          setShowAlertSignOut(false);
-          signOut();
-        }}
+        onCancelPressed={handleSignOutCancel}
+        onConfirmPressed={handleSignOutConfirm}
       />
     </>
   );

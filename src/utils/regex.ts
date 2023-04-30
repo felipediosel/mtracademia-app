@@ -5,6 +5,8 @@ export function isEmailInvalid(email: string): boolean {
 }
 
 export function formatCpf(cpf: string): string {
+  if (!cpf) return '';
+
   return cpf.replace(
     /(\d{3})(\d{3})(\d{3})(\d{2})/,
     function (regex, arg1, arg2, arg3, arg4) {

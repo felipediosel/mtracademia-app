@@ -1,4 +1,3 @@
-import * as Pessoa from './pessoa';
-import * as Versao from './versao';
+import {Collections} from './collections';
 
-export {Pessoa, Versao};
+export {Collections};

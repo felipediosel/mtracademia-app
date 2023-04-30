@@ -19,7 +19,9 @@ export function clean(): Promise<void> {
 export async function getUsersFromEmail(
   email: string,
 ): Promise<UserType[] | null> {
-  const pessoaEmail = await Firestore.Pessoa.getPessoaFromEmail(email);
+  const pessoaEmail = await Firestore.Collections.Pessoa.getPessoaFromEmail(
+    email,
+  );
 
   if (pessoaEmail) {
     const users: UserType[] = [];

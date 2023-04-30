@@ -1,11 +1,10 @@
 import {useMemo, useState} from 'react';
-import Loading from '../screens/Loading';
-import Login from '../screens/Login';
 import useAuth from '../contexts/auth/hooks/useAuth';
-import FirstTimeStack from '../navigation/stacks/FirstTimeStack';
-import SignedInStack from '../navigation/stacks/SignedInStack';
-import {AlertEmailLinkInvalid} from '../components/Alerts/AlertEmailLinkInvalid';
+import Loading from '../screens/Loading';
 import ChooseUser from '../screens/ChooseUser';
+import Login from '../screens/Login';
+import {AlertEmailLinkInvalid} from '../components/Alerts/AlertEmailLinkInvalid';
+import SignedStack from './navigation/signed-stack.routes';
 
 const Routes: React.FC = () => {
   const {loading, error, signed, users} = useAuth();
@@ -18,7 +17,7 @@ const Routes: React.FC = () => {
     }
 
     if (signed) {
-      return <SignedInStack />;
+      return <SignedStack />;
     }
 
     if (users && users.length > 1) {

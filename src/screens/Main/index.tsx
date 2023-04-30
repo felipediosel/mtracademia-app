@@ -1,12 +1,12 @@
 import {Background} from '../../components/Background';
 import SafeAreaView from '../../components/SafeAreaView';
-import TabNavigator from '../../navigation/tabs';
+import SignedTab from '../../routes/navigation/signed-tab.routes';
 
 const Main: React.FC = () => {
   return (
     <Background>
       <SafeAreaView>
-        <TabNavigator />
+        <SignedTab />
       </SafeAreaView>
     </Background>
   );

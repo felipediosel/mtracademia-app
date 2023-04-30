@@ -1,16 +1,6 @@
 import React, {useState} from 'react';
-
-import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
-
 import {useTheme} from 'styled-components';
-
-import {getPessoaQuerySnapshotFromEmail} from '../../data/Pessoa';
-
-import {sendSignInLinkToEmail} from '../../hooks/useAuth';
-import {storeUsers, UserProps} from '../../hooks/useUser';
-
 import {isEmailInvalid} from '../../utils/regex';
-
 import {KeyboardAvoidingView} from '../../components/KeyboardAvoidingView';
 import {Background} from '../../components/Background';
 import {Foreground} from '../../components/Foreground';
