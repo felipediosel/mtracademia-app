@@ -34,12 +34,14 @@ const Privacy: React.FC = () => {
               justifyContent: 'flex-start',
               alignItems: 'flex-start',
               paddingLeft: theme.responsive.hp('3%'),
+              paddingRight: theme.responsive.hp('3%'),
             }}>
             <Container
               style={{
                 alignItems: 'flex-start',
               }}>
               <MenuItem
+                showArrow={true}
                 icon={
                   <FileText
                     color={theme.colors.pr}
@@ -48,29 +50,18 @@ const Privacy: React.FC = () => {
                 }
                 title="Termos de uso"
               />
-              <TextSmall
-                style={{
-                  color: theme.colors.ts,
-                }}>
-                Veja aqui nossos termos de uso.
-              </TextSmall>
             </Container>
             <Container
               style={{
                 alignItems: 'flex-start',
               }}>
               <MenuItem
+                showArrow={true}
                 icon={
                   <Cookie color={theme.colors.pr} size={theme.icons.sizes.sm} />
                 }
                 title="Política de privacidade"
               />
-              <TextSmall
-                style={{
-                  color: theme.colors.ts,
-                }}>
-                Veja aqui nossa política de privacidade.
-              </TextSmall>
             </Container>
           </Container>
         </Container>

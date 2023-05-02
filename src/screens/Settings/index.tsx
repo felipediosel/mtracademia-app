@@ -19,6 +19,8 @@ import SafeAreaView from '../../components/SafeAreaView';
 import {User} from './components/User';
 import {Version} from './components/Version';
 import {LastSync} from './components/LastSync';
+import {TouchableOpacity} from '../../components/TouchableOpacity';
+import {Text} from '../../components/Texts/Text';
 
 const Settings: React.FC = () => {
   const navigation = useNavigation();
@@ -68,14 +70,16 @@ const Settings: React.FC = () => {
             <User />
             <Container
               style={{
-                height: '50%',
+                height: '37%',
                 width: '100%',
                 gap: theme.responsive.hp('5%'),
                 justifyContent: 'flex-start',
                 alignItems: 'flex-start',
                 paddingLeft: theme.responsive.hp('3%'),
+                paddingRight: theme.responsive.hp('3%'),
               }}>
               <MenuItem
+                showArrow={true}
                 onPress={handlePersonalData}
                 icon={
                   <UserCircle
@@ -86,6 +90,7 @@ const Settings: React.FC = () => {
                 title="Dados Pessoais"
               />
               <MenuItem
+                showArrow={true}
                 onPress={handlePreferences}
                 icon={
                   <SlidersHorizontal
@@ -96,6 +101,7 @@ const Settings: React.FC = () => {
                 title="Preferências"
               />
               <MenuItem
+                showArrow={true}
                 onPress={handlePrivacy}
                 icon={
                   <ShieldCheck
@@ -105,15 +111,27 @@ const Settings: React.FC = () => {
                 }
                 title="Privacidade"
               />
-              <MenuItem
+            </Container>
+            <Container style={{height: '10%'}}>
+              <TouchableOpacity
+                style={{
+                  backgroundColor: theme.colors.bg,
+                  borderWidth: 2,
+                  borderColor: theme.colors.ts,
+                }}
                 onPress={handleSignOut}
-                icon={
-                  <SignOut
-                    color={theme.colors.pr}
-                    size={theme.icons.sizes.sm}
-                  />
+                loading={showAlertSignOut}
+                disabled={showAlertSignOut}
+                children={
+                  <Container style={{flexDirection: 'row'}}>
+                    <Text
+                      style={{
+                        color: theme.colors.at,
+                      }}>
+                      Sair
+                    </Text>
+                  </Container>
                 }
-                title="Sair"
               />
             </Container>
             <Container

@@ -95,12 +95,14 @@ const PersonalData: React.FC = () => {
               justifyContent: 'flex-start',
               alignItems: 'flex-start',
               paddingLeft: theme.responsive.hp('3%'),
+              paddingRight: theme.responsive.hp('3%'),
             }}>
             <Container
               style={{
                 alignItems: 'flex-start',
               }}>
               <MenuItem
+                disabled={true}
                 icon={
                   <IdentificationCard
                     color={theme.colors.pr}
@@ -121,6 +123,7 @@ const PersonalData: React.FC = () => {
                 alignItems: 'flex-start',
               }}>
               <MenuItem
+                disabled={true}
                 icon={
                   <House color={theme.colors.pr} size={theme.icons.sizes.sm} />
                 }
@@ -138,6 +141,7 @@ const PersonalData: React.FC = () => {
                 alignItems: 'flex-start',
               }}>
               <MenuItem
+                disabled={true}
                 icon={
                   <Phone color={theme.colors.pr} size={theme.icons.sizes.sm} />
                 }
@@ -155,6 +159,7 @@ const PersonalData: React.FC = () => {
                 alignItems: 'flex-start',
               }}>
               <MenuItem
+                disabled={true}
                 icon={
                   <EnvelopeSimple
                     color={theme.colors.pr}

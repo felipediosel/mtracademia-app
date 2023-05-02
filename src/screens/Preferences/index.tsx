@@ -7,10 +7,13 @@ import {
   Sun,
   MoonStars,
   Bell,
-  SquaresFour,
-  HandWaving,
-  ArrowUpRight,
-  CaretRight,
+  ArrowClockwise,
+  PaintRoller,
+  Image,
+  UserGear,
+  SunHorizon,
+  ImageSquare,
+  Eye,
 } from 'phosphor-react-native';
 import SwitchSelector from 'react-native-switch-selector';
 import {ThemeEnum} from '../../contexts/theme';
@@ -92,9 +95,13 @@ const Preferences: React.FC = () => {
               }}>
               <MenuItem
                 icon={
-                  <Lamp color={theme.colors.pr} size={theme.icons.sizes.sm} />
+                  <ImageSquare
+                    color={theme.colors.pr}
+                    size={theme.icons.sizes.sm}
+                  />
                 }
                 title="Tema"
+                disabled={true}
               />
               <SwitchSelector
                 initial={initialSwitchSelector}
@@ -159,61 +166,33 @@ const Preferences: React.FC = () => {
                 ]}
               />
             </Container>
-            <Container
-              style={{
-                alignItems: 'flex-start',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                width: '100%',
-              }}>
-              <MenuItem
-                icon={
-                  <Bell color={theme.colors.pr} size={theme.icons.sizes.sm} />
-                }
-                title="Notificações"
-              />
-              <Switch
-                style={{transform: [{scaleX: 0.8}, {scaleY: 0.8}]}}
-                trackColor={{false: theme.colors.sc, true: theme.colors.sc}}
-                thumbColor={
-                  isEnabledNotifications ? theme.colors.pr : theme.colors.ts
-                }
-                ios_backgroundColor={theme.colors.sc}
-                onValueChange={toggleSwitchNotifications}
-                value={isEnabledNotifications}
-              />
-            </Container>
-            <Container
-              style={{
-                alignItems: 'flex-start',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                width: '100%',
-              }}>
-              <Container
-                style={{
-                  alignItems: 'flex-start',
-                }}>
-                <MenuItem
-                  icon={
-                    <HandWaving
-                      color={theme.colors.pr}
-                      size={theme.icons.sizes.sm}
-                    />
+            <MenuItem
+              icon={
+                <Bell color={theme.colors.pr} size={theme.icons.sizes.sm} />
+              }
+              title="Notificações"
+              disabled={true}
+              component={
+                <Switch
+                  style={{transform: [{scaleX: 0.8}, {scaleY: 0.8}]}}
+                  trackColor={{false: theme.colors.sc, true: theme.colors.sc}}
+                  thumbColor={
+                    isEnabledNotifications ? theme.colors.pr : theme.colors.ts
                   }
-                  title="Rever introdução"
-                  onPress={() => {
-                    navigation.navigate('Intro', {reIntroduction: true});
-                  }}
+                  ios_backgroundColor={theme.colors.sc}
+                  onValueChange={toggleSwitchNotifications}
+                  value={isEnabledNotifications}
                 />
-                <TextSmall
-                  style={{
-                    color: theme.colors.ts,
-                  }}>
-                  Veja novamente a apresentação inicial.
-                </TextSmall>
-              </Container>
-            </Container>
+              }
+            />
+            <MenuItem
+              icon={<Eye color={theme.colors.pr} size={theme.icons.sizes.sm} />}
+              title="Rever introdução"
+              showArrow={true}
+              onPress={() => {
+                navigation.navigate('Intro', {reIntroduction: true});
+              }}
+            />
           </Container>
         </Container>
       </SafeAreaView>

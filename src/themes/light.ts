@@ -15,7 +15,7 @@ export default {
     bg: '#FFFFFF', //background
     pr: '#EA723B', //primary
     sc: '#DBDBE1', //secondary
-    at: '#CC4F38', //attention
+    at: '#D42424', //attention
   },
   fonts: {
     fm: 'Montserrat', //family

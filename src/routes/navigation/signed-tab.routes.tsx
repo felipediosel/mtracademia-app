@@ -6,6 +6,7 @@ import {
   Calendar,
   CurrencyDollarSimple,
   Person,
+  CalendarBlank,
 } from 'phosphor-react-native';
 import Home from '../../screens/Home';
 import Finance from '../../screens/Finance';
@@ -17,6 +18,7 @@ import {HeaderRight} from '../../components/TabBar/HeaderRight';
 import {HeaderTitle} from '../../components/TabBar/HeaderTitle';
 import useAuth from '../../contexts/auth/hooks/useAuth';
 import * as S from '../styles';
+import {View} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,6 +44,33 @@ const SignedTab: React.FC = () => {
     );
   };
 
+  const getTabBarIcon = (focused: boolean, icon: JSX.Element) => {
+    return focused ? (
+      <View
+        style={{
+          borderTopWidth: 2,
+          borderColor: theme.colors.pr,
+          width: '50%',
+          height: '100%',
+          alignSelf: 'center',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <View>{icon}</View>
+      </View>
+    ) : (
+      <View
+        style={{
+          height: '100%',
+          alignSelf: 'center',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        {icon}
+      </View>
+    );
+  };
+
   return (
     <Tab.Navigator
       initialRouteName="Início"
@@ -57,7 +86,8 @@ const SignedTab: React.FC = () => {
         name="Início"
         component={Home}
         options={{
-          tabBarIcon: ({color, size}) => <House size={size} color={color} />,
+          tabBarIcon: ({focused, color, size}) =>
+            getTabBarIcon(focused, <House color={color} size={size} />),
           headerLeft: () => {
             return <HeaderLeft />;
           },
@@ -77,7 +107,8 @@ const SignedTab: React.FC = () => {
         name="Plano"
         component={Plan}
         options={{
-          tabBarIcon: ({color, size}) => <Calendar size={size} color={color} />,
+          tabBarIcon: ({focused, color, size}) =>
+            getTabBarIcon(focused, <CalendarBlank size={size} color={color} />),
           headerLeft: () => {
             return <HeaderLeft />;
           },
@@ -99,9 +130,11 @@ const SignedTab: React.FC = () => {
         name="Financeiro"
         component={Finance}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <CurrencyDollarSimple size={size} color={color} />
-          ),
+          tabBarIcon: ({focused, color, size}) =>
+            getTabBarIcon(
+              focused,
+              <CurrencyDollarSimple size={size} color={color} />,
+            ),
           headerLeft: () => {
             return <HeaderLeft />;
           },
@@ -123,7 +156,8 @@ const SignedTab: React.FC = () => {
         name="Corpo"
         component={Body}
         options={{
-          tabBarIcon: ({color, size}) => <Person size={size} color={color} />,
+          tabBarIcon: ({focused, color, size}) =>
+            getTabBarIcon(focused, <Person size={size} color={color} />),
           headerLeft: () => {
             return <HeaderLeft />;
           },

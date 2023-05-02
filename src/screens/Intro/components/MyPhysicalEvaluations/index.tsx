@@ -10,9 +10,9 @@ export function MyPhysicalEvaluations() {
       source={require('../../../../assets/img/illustrations/body.png')}
       title={
         <>
-          suas avaliações{' '}
+          suas{' '}
           <TextExtraLarge style={{color: theme.colors.pr}}>
-            físicas
+            avaliações físicas
           </TextExtraLarge>
           ,
         </>

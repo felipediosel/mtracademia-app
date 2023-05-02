@@ -10,7 +10,7 @@ export function MyFrequency() {
       source={require('../../../../assets/img/illustrations/frequence.png')}
       title={
         <>
-          Monitore aqui: seus{' '}
+          Monitore os seus{' '}
           <TextExtraLarge style={{color: theme.colors.pr}}>
             treinos
           </TextExtraLarge>

@@ -1,6 +1,7 @@
 import firestore from '@react-native-firebase/firestore';
 import {PessoaDTO} from './dto';
 import {getLastVersionReference} from '../versao';
+import {FunnelSimple} from 'phosphor-react-native';
 
 function collection() {
   return firestore().collection<PessoaDTO>('pessoa');
@@ -15,9 +16,11 @@ export async function onSnapshotId(
     .where('id', '==', id)
     .limit(1)
     .onSnapshot(snapshot => {
-      const data = snapshot.docs.map(doc => doc.data()).shift();
+      if (snapshot) {
+        const data = snapshot.docs.map(doc => doc.data()).shift();
 
-      callback(data);
+        callback(data);
+      }
     });
 }
 
