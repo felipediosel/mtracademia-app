@@ -11,7 +11,7 @@ import {
 import Home from '../../screens/Home';
 import Finance from '../../screens/Finance';
 import Plan from '../../screens/Plan';
-import Body from '../../screens/Body';
+import MyPhysicalEvaluations from '../../screens/MyPhysicalEvaluations';
 import Workout from '../../screens/Workout';
 import {HeaderLeft} from '../../components/TabBar/HeaderLeft';
 import {HeaderRight} from '../../components/TabBar/HeaderRight';
@@ -154,7 +154,7 @@ const SignedTab: React.FC = () => {
       />
       <Tab.Screen
         name="Corpo"
-        component={Body}
+        component={MyPhysicalEvaluations}
         options={{
           tabBarIcon: ({focused, color, size}) =>
             getTabBarIcon(focused, <Person size={size} color={color} />),

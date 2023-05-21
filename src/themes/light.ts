@@ -14,8 +14,9 @@ export default {
     ts: '#57605E', //text-secondary
     bg: '#FFFFFF', //background
     pr: '#EA723B', //primary
-    sc: '#DBDBE1', //secondary
+    sc: '#EFEFF4', //secondary
     at: '#D42424', //attention
+    wa: '#60331F', //warning
   },
   fonts: {
     fm: 'Montserrat', //family

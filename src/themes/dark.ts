@@ -12,10 +12,11 @@ export default {
   colors: {
     tp: '#FFFFFF', //text-primary
     ts: '#767577', //text-secondary
-    bg: '#101218', //background
+    bg: '#000000', //background #101218
     pr: '#E76124', //primary
     sc: '#1E1E24', //secondary
     at: '#D42424', //attention
+    wa: '#FFA726', //warning
   },
   fonts: {
     fm: 'Montserrat', //family
